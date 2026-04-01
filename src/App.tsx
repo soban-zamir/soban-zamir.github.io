@@ -308,7 +308,7 @@ export default function App() {
             >
               <div className="w-56 h-56 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-[0_0_40px_rgba(250,204,21,0.3)] mx-auto">
                 <img 
-                  src={`https://github.com/sobanzamirm-del.png?v=${avatarTimestamp}`} 
+                  src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
                   alt="Muhammad Soban Zamir" 
                   className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
                   referrerPolicy="no-referrer"
