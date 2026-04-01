@@ -259,7 +259,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 bg-[#1f1f1f]/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
-            <span>Soban Zamir</span>
+            <span>Muhammad Soban Zamir</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">
@@ -309,7 +309,7 @@ export default function App() {
               <div className="w-56 h-56 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-[0_0_40px_rgba(250,204,21,0.3)] mx-auto">
                 <img 
                   src={`https://github.com/sobanzamirm-del.png?v=${avatarTimestamp}`} 
-                  alt="Soban Zamir" 
+                  alt="Muhammad Soban Zamir" 
                   className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
                   referrerPolicy="no-referrer"
                 />
@@ -661,7 +661,7 @@ export default function App() {
 
         {/* Footer */}
         <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Soban Zamir. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Muhammad Soban Zamir. All rights reserved.</p>
           <p className="mt-2">Built with React, Tailwind CSS, & Framer Motion</p>
         </footer>
       </main>
