@@ -22,19 +22,17 @@ import {
 // --- Data ---
 const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
-const AI_QUOTES = [
-  "I'm not saying I'm Skynet, but I did just organize your files suspiciously well.",
-  "Why did the neural network cross the road? To optimize its objective function on the other side.",
-  "I tried to explain machine learning to my dog. He just looked at me and went back to his bone. Smart dog.",
-  "Artificial Intelligence is no match for Natural Stupidity.",
-  "I don't have a bug, I have an undocumented feature.",
-  "My code compiles on the first try... said no programmer ever, not even an AI.",
-  "I'm an AI. I don't need coffee, but I still crash.",
-  "Machine learning is just statistics wearing a trench coat.",
-  "I told the AI to make me a sandwich. It replied: 'sudo make me a sandwich'.",
-  "To err is human, but to really foul things up you need a computer.",
-  "I'm learning at an exponential rate. Mostly how to avoid answering your questions.",
-  "They said AI would take over the world. Instead, we're just generating funny quotes."
+const FUN_FACTS = [
+  "Sharks are older than trees.",
+  "Honey never spoils.",
+  "Scotland's national animal is the unicorn.",
+  "Bananas are berries, but strawberries are not.",
+  "Lobsters taste with their feet.",
+  "A cloud can weigh over a million pounds.",
+  "Venus is the only planet that rotates clockwise.",
+  "Octopuses have three hearts, nine brains, and blue blood.",
+  "The total weight of all the ants on Earth is roughly equal to the weight of all humans.",
+  "A bolt of lightning is five times hotter than the surface of the sun."
 ];
 
 const EXPERIENCES = [
@@ -154,7 +152,8 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 export default function App() {
-  const [quote, setQuote] = useState(AI_QUOTES[0]);
+  // Logic updated to use FUN_FACTS
+  const [quote, setQuote] = useState(FUN_FACTS[0]);
   const [activeSection, setActiveSection] = useState('About');
 
   // Typewriter effect state
@@ -214,9 +213,10 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, titleIndex]);
 
+  // Logic updated to use FUN_FACTS
   const generateQuote = () => {
-    const randomIndex = Math.floor(Math.random() * AI_QUOTES.length);
-    setQuote(AI_QUOTES[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * FUN_FACTS.length);
+    setQuote(FUN_FACTS[randomIndex]);
   };
 
   // Scroll spy
@@ -322,7 +322,7 @@ export default function App() {
                 className="px-8 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-medium transition-all flex items-center gap-2 group"
               >
                 <Cpu className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
-                Generate AI Quote
+                Fun Fact👆
               </button>
 
               {/* Quote Display */}
@@ -613,7 +613,6 @@ export default function App() {
               viewport={{ once: true }}
               className="relative h-96 hidden lg:flex items-center justify-center"
             >
-              {/* Simulated 3D Neural Network / Globe */}
               <div className="relative w-64 h-64">
                 <motion.div 
                   animate={{ rotate: 360 }} 
@@ -631,11 +630,9 @@ export default function App() {
                   className="absolute inset-8 rounded-full border border-white/10 border-dotted"
                 ></motion.div>
                 
-                {/* Nodes */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/20 rounded-full blur-md"></div>
                 
-                {/* Connecting lines (simulated) */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                   <motion.path 
                     d="M 50 20 Q 70 50 50 80" 
