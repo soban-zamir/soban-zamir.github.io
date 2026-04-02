@@ -66,42 +66,42 @@ const PROJECTS = [
     description: "Developed an interactive NLP-based grammar correction system using Transformer models (BERT/T5) for real-time text refinement, deployed via Gradio.",
     tags: ["NLP", "Transformers", "PyTorch", "Gradio"],
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/-NLP-Grammar-Correction-System-Using-Transformers"
   },
   {
     title: "Discrete Logic Electronic Slot Machine",
     description: "Designed and implemented a discrete logic electronic slot machine, architected to emulate commercial casino machine circuitry using asynchronous random counters and logic gates.",
     tags: ["Discrete Logic", "Electronics", "Circuit Design"],
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/Discrete-Logic-Electronic-Slot-Machine"
   },
   {
     title: "MOSFET Analog Audio Amplifier",
     description: "Designed and implemented a MOSFET based audio amplifier capable of amplifying low level AC signals. Simulated in PSPICE and validated in hardware.",
     tags: ["MOSFET", "PSPICE", "Audio Amplifier"],
     image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/-MOSFET-Designed-Analog-Audio-Amplifier"
   },
   {
     title: "IoT Enabled Smart Irrigation System",
     description: "Developed a prototype for an automatic irrigation system to optimize water usage in agriculture using embedded systems and real-time soil moisture sensors.",
     tags: ["IoT", "Embedded Systems", "Sensors"],
     image: "https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/-IoT-Enabled-Smart-Irrigation-System"
   },
   {
     title: "Biometric Access Control System",
     description: "Integrated RFID and fingerprint recognition technologies to provide secure and efficient access control.",
     tags: ["Biometrics", "RFID", "Access Control"],
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/-Multi-Factor-Biometric-Access-Control-System"
   },
   {
     title: "AutoCAD Wiring Layout Design",
     description: "Designed a detailed, customized floor plan and electrical wiring layout for a residence using AutoCAD software.",
     tags: ["AutoCAD", "Electrical Design"],
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/sobanzamirm-del"
+    link: "https://github.com/soban-zamir/-AutoCAD-Wiring-Layout-Design-for-Residence"
   }
 ];
 
@@ -114,22 +114,22 @@ const CERTIFICATIONS = [
   {
     title: "IoT for Everyone",
     issuer: "Higher Education Commission PK",
-    date: "2025"
+    date: "Aug 2025"
   },
   {
     title: "LLM & Generative AI Series",
     issuer: "International Business Machines (IBM)",
-    date: "2025"
+    date: "Jul 2025"
   },
   {
     title: "Deep Learning Specialization",
     issuer: "DeepLearning.AI",
-    date: "2025"
+    date: "Jul 2025"
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Stanford Online",
-    date: "2025"
+    date: "Jul 2025"
   },
   {
     title: "Foundations of Cybersecurity",
@@ -151,7 +151,7 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
   </div>
 );
 
-const TITLES = ["Electrical Engineer", "AI Researcher", "Builder", "Deep Learning Practitioner"];
+const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 export default function App() {
   const [quote, setQuote] = useState(AI_QUOTES[0]);
@@ -276,7 +276,7 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0A66C2] transition-colors" title="LinkedIn"><Linkedin className="w-5 h-5" /></a>
-            <a href="https://github.com/sobanzamirm-del" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" title="GitHub"><Github className="w-5 h-5" /></a>
+            <a href="https://soban-zamir.github.io/portfolio/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" title="GitHub"><Github className="w-5 h-5" /></a>
             <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400 hover:text-[#EA4335] transition-colors" title="Email"><Mail className="w-5 h-5" /></a>
           </div>
         </div>
