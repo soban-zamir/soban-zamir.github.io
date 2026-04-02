@@ -152,8 +152,12 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 export default function App() {
-  // Logic updated to use FUN_FACTS
+  // Logic to prevent repeats: Store indices of facts not yet shown
   const [quote, setQuote] = useState(FUN_FACTS[0]);
+  const [availableIndices, setAvailableIndices] = useState<number[]>(
+    FUN_FACTS.map((_, i) => i).filter(idx => idx !== 0) // Start with all except the first one displayed
+  );
+
   const [activeSection, setActiveSection] = useState('About');
 
   // Typewriter effect state
@@ -213,10 +217,23 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, titleIndex]);
 
-  // Logic updated to use FUN_FACTS
+  // Updated generateQuote to prevent repeats until full cycle is complete
   const generateQuote = () => {
-    const randomIndex = Math.floor(Math.random() * FUN_FACTS.length);
-    setQuote(FUN_FACTS[randomIndex]);
+    let pool = [...availableIndices];
+
+    // If pool is empty, reset it with all indices
+    if (pool.length === 0) {
+      pool = FUN_FACTS.map((_, i) => i);
+    }
+
+    const randomIndexInPool = Math.floor(Math.random() * pool.length);
+    const factIndex = pool[randomIndexInPool];
+
+    // Remove chosen index from pool
+    pool.splice(randomIndexInPool, 1);
+
+    setQuote(FUN_FACTS[factIndex]);
+    setAvailableIndices(pool);
   };
 
   // Scroll spy
@@ -321,7 +338,6 @@ export default function App() {
                 onClick={generateQuote}
                 className="px-8 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-medium transition-all flex items-center gap-2 group"
               >
-                <Cpu className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
                 Fun Fact👆
               </button>
 
@@ -379,27 +395,20 @@ export default function App() {
                   transition={{ delay: index * 0.2 }}
                   className={`mb-16 flex flex-col md:flex-row justify-between w-full relative ${!isEven ? 'md:flex-row-reverse' : ''}`}
                 >
-                  {/* Timeline Dot (Center) */}
                   <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-[#1f1f1f] border-2 border-white/20 items-center justify-center z-10 mt-6">
                     <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
                       <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full"></div>
                     </div>
                   </div>
                   
-                  {/* Content Card */}
                   <div className={`w-full md:w-[45%] mb-4 md:mb-0`}>
                     <div className="bg-[#1a1a2e] border border-white/10 rounded-xl p-8 shadow-2xl relative">
-                      {/* Arrow pointing to center line */}
                       <div className={`hidden md:block absolute top-10 w-4 h-4 bg-[#1a1a2e] transform rotate-45 ${isEven ? '-right-2 border-t border-r border-white/10' : '-left-2 border-b border-l border-white/10'}`}></div>
-                      
                       <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
                       <div className="text-gray-400 font-medium mb-4">{exp.company}</div>
-                      
-                      {/* Mobile Date */}
                       <div className="md:hidden text-sm text-gray-500 font-mono bg-black/20 px-3 py-1 rounded-full w-fit mb-6">
                         {exp.period}
                       </div>
-
                       <ul className="space-y-3 text-gray-300 text-sm leading-relaxed">
                         {exp.achievements.map((ach, i) => (
                           <li key={i} className="flex items-start gap-3">
@@ -411,7 +420,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Desktop Date (Opposite side) */}
                   <div className={`hidden md:flex w-[45%] items-start mt-9 ${isEven ? 'justify-start pl-8' : 'justify-end pr-8'}`}>
                     <div className="text-gray-300 font-medium text-base">
                       {exp.period}
@@ -445,29 +453,17 @@ export default function App() {
               >
                 <GlassCard className="h-full flex flex-col group hover:border-yellow-400/30 transition-colors">
                   <div className="relative h-48 -mx-6 -mt-6 mb-6 overflow-hidden rounded-t-2xl">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                    />
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1f1f1f] to-transparent"></div>
                   </div>
-                  
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">{project.title}</h3>
-                    <a href={project.link} className="text-gray-400 hover:text-white transition-colors">
-                      <Github className="w-5 h-5" />
-                    </a>
+                    <a href={project.link} className="text-gray-400 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
                   </div>
-                  
                   <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
-                  
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.map(tag => (
-                      <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300">
-                        {tag}
-                      </span>
+                      <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300">{tag}</span>
                     ))}
                   </div>
                 </GlassCard>
@@ -486,16 +482,9 @@ export default function App() {
           >
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">Certifications</h2>
           </motion.div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {CERTIFICATIONS.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
+              <motion.div key={index} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
                 <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors">
                   <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">{cert.title}</h3>
                   <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
@@ -508,155 +497,55 @@ export default function App() {
 
         {/* Contact Section */}
         <section id="contact" className="py-24 px-6 max-w-6xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Get In Touch</h2>
             <div className="h-1 w-20 bg-yellow-400 rounded-full"></div>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <GlassCard>
                 {formStatus === 'success' ? (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-12 text-center space-y-4"
-                  >
-                    <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle2 className="w-10 h-10" />
-                    </div>
+                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="py-12 text-center space-y-4">
+                    <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4"><CheckCircle2 className="w-10 h-10" /></div>
                     <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
                     <p className="text-gray-400">Thanks for reaching out. I'll get back to you as soon as possible.</p>
-                    <button 
-                      onClick={() => setFormStatus('idle')}
-                      className="text-yellow-400 hover:text-yellow-300 font-medium underline underline-offset-4"
-                    >
-                      Send another message
-                    </button>
+                    <button onClick={() => setFormStatus('idle')} className="text-yellow-400 hover:text-yellow-300 font-medium underline underline-offset-4">Send another message</button>
                   </motion.div>
                 ) : (
                   <form className="space-y-6" onSubmit={handleFormSubmit}>
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        required
-                        value={formData.name}
-                        onChange={handleFormChange}
-                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all"
-                        placeholder="John Doe"
-                      />
+                      <input type="text" id="name" required value={formData.name} onChange={handleFormChange} className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all" placeholder="John Doe" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        required
-                        value={formData.email}
-                        onChange={handleFormChange}
-                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all"
-                        placeholder="john@example.com"
-                      />
+                      <input type="email" id="email" required value={formData.email} onChange={handleFormChange} className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all" placeholder="john@example.com" />
                     </div>
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                      <textarea 
-                        id="message" 
-                        rows={5}
-                        required
-                        value={formData.message}
-                        onChange={handleFormChange}
-                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all resize-none"
-                        placeholder="Let's build something amazing..."
-                      ></textarea>
+                      <textarea id="message" rows={5} required value={formData.message} onChange={handleFormChange} className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all resize-none" placeholder="Let's build something amazing..."></textarea>
                     </div>
-                    
-                    {formStatus === 'error' && (
-                      <p className="text-red-400 text-sm">Something went wrong. Please try again or email me directly.</p>
-                    )}
-
-                    <button 
-                      type="submit" 
-                      disabled={formStatus === 'sending'}
-                      className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed text-gray-900 font-bold transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(250,204,21,0.3)]"
-                    >
-                      {formStatus === 'sending' ? (
-                        <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5" />
-                          Send Message
-                        </>
-                      )}
+                    {formStatus === 'error' && <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>}
+                    <button type="submit" disabled={formStatus === 'sending'} className="w-full py-3 rounded-lg bg-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed text-gray-900 font-bold transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(250,204,21,0.3)]">
+                      {formStatus === 'sending' ? <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div> : <><Send className="w-5 h-5" /> Send Message</>}
                     </button>
                   </form>
                 )}
               </GlassCard>
             </motion.div>
-
-            {/* Abstract Visual */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative h-96 hidden lg:flex items-center justify-center"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative h-96 hidden lg:flex items-center justify-center">
               <div className="relative w-64 h-64">
-                <motion.div 
-                  animate={{ rotate: 360 }} 
-                  transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-                  className="absolute inset-0 rounded-full border border-cyan-500/30 border-dashed"
-                ></motion.div>
-                <motion.div 
-                  animate={{ rotate: -360 }} 
-                  transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-                  className="absolute inset-4 rounded-full border border-blue-500/20"
-                ></motion.div>
-                <motion.div 
-                  animate={{ rotate: 360, scale: [1, 1.1, 1] }} 
-                  transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-                  className="absolute inset-8 rounded-full border border-white/10 border-dotted"
-                ></motion.div>
-                
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/20 rounded-full blur-md"></div>
-                
+                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute inset-0 rounded-full border border-cyan-500/30 border-dashed" />
+                <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }} className="absolute inset-4 rounded-full border border-blue-500/20" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl" />
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                  <motion.path 
-                    d="M 50 20 Q 70 50 50 80" 
-                    fill="transparent" 
-                    stroke="rgba(6, 182, 212, 0.3)" 
-                    strokeWidth="0.5"
-                    animate={{ d: ["M 50 20 Q 70 50 50 80", "M 50 20 Q 30 50 50 80", "M 50 20 Q 70 50 50 80"] }}
-                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  />
-                  <motion.path 
-                    d="M 20 50 Q 50 70 80 50" 
-                    fill="transparent" 
-                    stroke="rgba(59, 130, 246, 0.3)" 
-                    strokeWidth="0.5"
-                    animate={{ d: ["M 20 50 Q 50 70 80 50", "M 20 50 Q 50 30 80 50", "M 20 50 Q 50 70 80 50"] }}
-                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                  />
+                  <motion.path d="M 50 20 Q 70 50 50 80" fill="transparent" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="0.5" animate={{ d: ["M 50 20 Q 70 50 50 80", "M 50 20 Q 30 50 50 80", "M 50 20 Q 70 50 50 80"] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} />
                 </svg>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
           <p>© {new Date().getFullYear()} Muhammad Soban Zamir. All rights reserved.</p>
           <p className="mt-2">Built with React, Tailwind CSS, & Framer Motion</p>
