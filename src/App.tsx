@@ -349,7 +349,7 @@ export default function App() {
         key={quote}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic border-t-4 border-t-slate-500 text-center"
+        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic text-center"
       >
         "{quote}"
       </motion.div>
