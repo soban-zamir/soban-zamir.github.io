@@ -184,51 +184,69 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
-const StarryBackground = () => {
-  const starsCount = 80; // Fewer stars makes it look cleaner and more "fine"
-  
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
-      {[...Array(starsCount)].map((_, i) => {
-        // Variable sizes: Some are 1px, 2px, and a few are 3px (the "bright" ones)
-        const sizeRand = Math.random();
-        const size = sizeRand > 0.9 ? '3px' : sizeRand > 0.6 ? '2px' : '1px';
-        const isBright = sizeRand > 0.8;
 
-        return (
+const AnimatedMesh = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-black">
+      {/* 1. The Thin Static Grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.07]" 
+        style={{ 
+          backgroundImage: `
+            linear-gradient(to right, #ffffff 1px, transparent 1px),
+            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+      
+      {/* 2. The Moving "Scanner" Beam */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.05), transparent)',
+          height: '50%',
+          width: '100%',
+        }}
+        animate={{
+          y: ['-100%', '200%'],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+
+      {/* 3. Pulsing Intersection Points (Nodes) */}
+      <div className="absolute inset-0 flex flex-wrap justify-around items-around opacity-30">
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white"
+            className="w-1 h-1 bg-cyan-500/40 rounded-full blur-[1px]"
             style={{
-              width: size,
-              height: size,
-              // Start them spread across the screen
+              position: 'absolute',
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: isBright ? 0.7 : 0.3,
-              // Add a glow to the larger stars so they don't look like dust
-              boxShadow: isBright ? '0 0 10px 1px rgba(255, 255, 255, 0.6)' : 'none',
             }}
             animate={{
-              // ANGLED MOVEMENT: Moving negative X (left) and negative Y (up)
-              // This creates the "Bottom-Right to Top-Left" drift
-              x: [0, -100], 
-              y: [0, -80],
-              // Twinkle effect
-              opacity: isBright ? [0.7, 0.3, 0.7] : [0.3, 0.1, 0.3],
+              opacity: [0.1, 0.6, 0.1],
+              scale: [1, 1.5, 1],
             }}
             transition={{
-              // SLOWWW: 40 to 80 seconds for a single drift cycle
-              duration: Math.random() * 40 + 40, 
+              duration: Math.random() * 3 + 2,
               repeat: Infinity,
-              ease: "linear", 
+              delay: Math.random() * 5,
             }}
           />
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
+
+
+
 export default function App() {
   const [quote, setQuote] = useState(FUN_FACTS[0]);
   const [availableIndices, setAvailableIndices] = useState<number[]>(
@@ -347,19 +365,20 @@ export default function App() {
     }, 10); 
   };
 
+
+  
+  
   return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
-      <StarryBackground />
-      {/* Rest of your components... */}
-
-      {/* 2. Subtle Depth Overlay (Replaces the Grid) */}
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/10 to-[#000000]"> </div>
+      
+      {/* The Animated Mesh background replaces the stars and the depth overlay */}
+      <AnimatedMesh />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#000000]/80 backdrop-blur-md border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
-            <span>Muhammad Soban Zamir</span>
+                <span>Muhammad Soban Zamir</span>
           </div>
           
           {/* Desktop Links */}
