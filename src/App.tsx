@@ -736,7 +736,6 @@ return (
                 ) : (
                   <form className="space-y-6" onSubmit={handleFormSubmit}>
                     <div>
-                      {/* Name Label is now White */}
                       <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Name</label>
                       <input 
                         type="text" 
@@ -744,13 +743,11 @@ return (
                         required 
                         value={formData.name} 
                         onChange={handleFormChange} 
-                        {/* Placeholder is left as default gray, border turns white on focus */}
                         className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-all" 
                         placeholder="John Doe" 
                       />
                     </div>
                     <div>
-                      {/* Email Label is now White */}
                       <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email</label>
                       <input 
                         type="email" 
@@ -763,7 +760,6 @@ return (
                       />
                     </div>
                     <div>
-                      {/* Message Label is now White */}
                       <label htmlFor="message" className="block text-sm font-medium text-white mb-2">Message</label>
                       <textarea 
                         id="message" 
@@ -777,7 +773,6 @@ return (
                     </div>
                     {formStatus === 'error' && <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>}
                     
-                    {/* Button changed to White background with Black text */}
                     <button 
                       type="submit" 
                       disabled={formStatus === 'sending'} 
@@ -793,7 +788,6 @@ return (
                 )}
               </GlassCard>
             </motion.div>
-            
             {/* Right Column: NEW Signal Visualizer */}
             <motion.div 
               initial={{ opacity: 0, x: 30 }} 
