@@ -185,31 +185,40 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 const StarryBackground = () => {
-  const starsCount = 100;
+  const starsCount = 80; // Reduced count so it doesn't look cluttered
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
-      {[...Array(starsCount)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full bg-white opacity-40"
-          style={{
-            width: Math.random() > 0.9 ? '2px' : '1px',
-            height: Math.random() > 0.9 ? '2px' : '1px',
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            x: [0, Math.random() * 200 - 100],
-            y: [0, Math.random() * 200 - 100],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: Math.random() * 100 + 100,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
+      {[...Array(starsCount)].map((_, i) => {
+        const size = Math.random() > 0.9 ? '2px' : '1px';
+        const isBright = Math.random() > 0.8;
+        
+        return (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: size,
+              height: size,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: isBright ? 0.8 : 0.4,
+              // This adds the "fine" star glow
+              boxShadow: isBright ? '0 0 8px 1px rgba(255, 255, 255, 0.4)' : 'none',
+            }}
+            animate={{
+              // Very slow drift to simulate deep space
+              y: [0, Math.random() * 40 - 20],
+              x: [0, Math.random() * 40 - 20],
+              opacity: isBright ? [0.8, 0.4, 0.8] : [0.4, 0.2, 0.4],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -342,7 +351,7 @@ return (
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/10 to-[#000000]"> </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#1f1f1f]/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#000000]/80 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
             <span>Muhammad Soban Zamir</span>
