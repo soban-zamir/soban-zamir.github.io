@@ -359,6 +359,72 @@ export default function App() {
 
 return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
+
+
+    {PROJECTS.map((project, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1 }}
+    // "active:scale-[0.98]" gives that tactile press feel on mobile
+    className="active:scale-[0.98] transition-transform duration-200"
+  >
+    <GlassCard className="h-full flex flex-col group border-white/10 hover:border-white/40 active:border-white transition-colors">
+      <div className="relative h-48 -mx-6 -mt-6 mb-6 overflow-hidden rounded-t-2xl">
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      </div>
+      <div className="flex justify-between items-start mb-4">
+        <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">{project.title}</h3>
+        <a href={project.link} className="text-gray-400 active:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+          <Github className="w-5 h-5" />
+        </a>
+      </div>
+      <p className="text-gray-400 mb-6 flex-grow text-sm">{project.description}</p>
+      <div className="flex flex-wrap gap-2 mt-auto">
+        {project.tags.map(tag => (
+          <span key={tag} className="text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded bg-white/5 border border-white/10 text-gray-400">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </GlassCard>
+  </motion.div>
+))}
+
+      {CERTIFICATIONS.map((cert, index) => (
+  <motion.div 
+    key={index} 
+    initial={{ opacity: 0, scale: 0.95 }} 
+    whileInView={{ opacity: 1, scale: 1 }} 
+    viewport={{ once: true }} 
+    transition={{ delay: index * 0.1 }}
+    className="active:scale-[0.97] transition-transform"
+  >
+    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+      <GlassCard className="relative flex flex-col h-full group border-white/10 hover:border-white/40 transition-all duration-300">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-lg font-bold text-white pr-8">{cert.title}</h3>
+          <img 
+            src={cert.logo} 
+            alt={cert.issuer} 
+            className="w-8 h-8 object-contain opacity-60 group-active:opacity-100 transition-opacity"
+          />
+        </div>
+        <div className="text-gray-400 text-sm mb-4 font-medium">{cert.issuer}</div>
+        <div className="mt-auto flex items-center justify-between">
+          <span className="text-xs font-mono text-gray-500">{cert.date}</span>
+          {/* Changed: visible on mobile, moves slightly on desktop hover */}
+          <span className="text-[10px] font-bold text-white opacity-60 group-hover:opacity-100 uppercase tracking-widest transition-all">
+            Verify →
+          </span>
+        </div>
+      </GlassCard>
+    </a>
+  </motion.div>
+))}
       
       {/* The Moving Grid - Sharp, Clear, and Structured */}
       <MovingGrid />
@@ -486,9 +552,9 @@ return (
 
               {/* Social Icons with tap feedback */}
               <div className="flex items-center gap-8 pt-6 border-t border-white/5">
-                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-125 transition-transform"><Linkedin className="w-6 h-6" /></a>
-                <a href="https://github.com/soban-zamir" className="text-white active:scale-125 transition-transform"><Github className="w-6 h-6" /></a>
-                <a href="mailto:sobanzamirm@gmail.com" className="text-white active:scale-125 transition-transform"><Mail className="w-6 h-6" /></a>
+                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-175 transition-transform"><Linkedin className="w-6 h-6" /></a>
+                <a href="https://github.com/soban-zamir" className="text-white active:scale-175 transition-transform"><Github className="w-6 h-6" /></a>
+                <a href="mailto:sobanzamirm@gmail.com" className="text-white active:scale-175 transition-transform"><Mail className="w-6 h-6" /></a>
               </div>
             </motion.div>
           )}
