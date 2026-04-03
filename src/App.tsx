@@ -326,7 +326,7 @@ export default function App() {
       className="relative"
     >
       {/* Reduced Image Size */}
-      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-gray-400 via-slate-600 to-slate-800 shadow-[0_0_30px_rgba(100,116,139,0.2)] mx-auto">
+      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-[#0a0a0a] shadow-[0_0_20px_rgba(0,0,0,0.8)] mx-auto">
         <img 
           src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
           alt="Muhammad Soban Zamir" 
