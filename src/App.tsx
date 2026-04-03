@@ -116,10 +116,28 @@ const CERTIFICATIONS = [
     link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW"
   },
   {
-    title: "LLM & Generative AI Series",
+    title: "Generative AI and LLMs: Architecture and Data Preparation",
     issuer: "International Business Machines (IBM)",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB"
+  },
+  {
+    title: "Generative AI Language Modeling with Transformers",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/VJXEE2DM6P0J"
+  },
+  {
+    title: "Generative AI Engineering and Fine-Tuning Transformers",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/1IOM07B8KKOU"
+  },
+  {
+    title: "Gen AI Foundational Models for NLP & Language Understanding",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/Q4H07TTL108C"
   },
   {
     title: "Deep Learning Specialization",
@@ -556,15 +574,36 @@ export default function App() {
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">Certifications</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CERTIFICATIONS.map((cert, index) => (
-              <motion.div key={index} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-                <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors">
-                  <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">{cert.title}</h3>
-                  <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
-                  <div className="mt-auto text-xs font-mono text-gray-500">{cert.date}</div>
-                </GlassCard>
-              </motion.div>
-            ))}
+{CERTIFICATIONS.map((cert, index) => (
+  <motion.div 
+    key={index} 
+    initial={{ opacity: 0, scale: 0.95 }} 
+    whileInView={{ opacity: 1, scale: 1 }} 
+    viewport={{ once: true }} 
+    transition={{ delay: index * 0.1 }}
+  >
+    {/* Wrap the card in a link tag */}
+    <a 
+      href={cert.link} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="block h-full no-underline"
+    >
+      <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors cursor-pointer">
+        <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">
+          {cert.title}
+        </h3>
+        <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
+        <div className="mt-auto text-xs font-mono text-gray-500">{cert.date}</div>
+        
+        {/* Optional: Add a small "View Credential" hint that appears on hover */}
+        <div className="mt-2 text-[10px] text-yellow-400/0 group-hover:text-yellow-400/80 transition-colors font-bold uppercase tracking-wider">
+          View Credential →
+        </div>
+      </GlassCard>
+    </a>
+  </motion.div>
+))}
           </div>
         </section>
 
