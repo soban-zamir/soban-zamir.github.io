@@ -491,7 +491,7 @@ return (
           >
             <div>
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-1 tracking-tight">
-                Hi, I'm <span className="text-blue-400">Soban</span>
+                Hi, I'm <span className="text-cyan-400">Soban</span>
               </h1>
               <h2 className="text-xl md:text-2xl text-gray-400 font-light h-8">
                 {displayedText}<span className="animate-pulse text-yellow-400">|</span>
