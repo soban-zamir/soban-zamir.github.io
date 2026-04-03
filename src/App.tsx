@@ -1,10 +1,3 @@
-The primary reason the code failed was a **nesting error**: you were closing the `<section>` and `</main>` tags prematurely inside the `.map()` loop, which caused the rest of your page (like the Contact section) to break or disappear.
-
-I have also fixed the **missing comma** in your `CERTIFICATIONS` array and ensured the `id="certifications"` is present so your navigation menu works.
-
-### Final Corrected Code
-
-```jsx
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -359,4 +352,3 @@ export default function App() {
     </div>
   );
 }
-```
