@@ -107,61 +107,71 @@ const CERTIFICATIONS = [
     title: "English Language Proficiency (C1 Advanced)",
     issuer: "EF SET",
     date: "Feb 2026",
-    link: "https://cert.efset.org/en/xC2ir1"
+    link: "https://cert.efset.org/en/xC2ir1",
+    logo: "https://www.efset.org/favicon.ico" // EF SET Logo
   },
   {
     title: "IoT for Everyone",
     issuer: "Higher Education Commission PK",
     date: "Aug 2025",
-    link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW"
+    link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Coursera_logo.png" // Coursera/HEC
   },
   {
     title: "Generative AI and LLMs: Architecture and Data Preparation",
     issuer: "International Business Machines (IBM)",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB"
+    link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" // IBM Logo
   },
   {
     title: "Generative AI Language Modeling with Transformers",
     issuer: "IBM",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/verify/VJXEE2DM6P0J"
+    link: "https://www.coursera.org/account/accomplishments/verify/VJXEE2DM6P0J",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
   },
   {
     title: "Generative AI Engineering and Fine-Tuning Transformers",
     issuer: "IBM",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/verify/1IOM07B8KKOU"
+    link: "https://www.coursera.org/account/accomplishments/verify/1IOM07B8KKOU",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
   },
   {
     title: "Gen AI Foundational Models for NLP & Language Understanding",
     issuer: "IBM",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/verify/Q4H07TTL108C"
+    link: "https://www.coursera.org/account/accomplishments/verify/Q4H07TTL108C",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
   },
   {
     title: "Deep Learning Specialization",
     issuer: "DeepLearning.AI",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
+    link: "https://www.coursera.org/account/accomplishments/specialization/LV9KFG8ZGEY1",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/DeepLearning.AI_logo.png" // DeepLearning.AI
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Stanford Online",
     date: "Jul 2025",
-    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
+    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O",
+    logo: "https://upload.wikimedia.org/wikipedia/en/b/b7/Stanford_University_seal.svg" // Stanford Logo
   },
   {
     title: "Foundations of Cybersecurity",
     issuer: "Google",
     date: "Jul 2023",
-    link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK"
+    link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Reference_Logo.svg" // Google Logo
   },
   {
     title: "Understanding Research Methods",
     issuer: "SOAS University of London",
     date: "Jul 2023",
-    link: "https://www.coursera.org/account/accomplishments/verify/JE4DLRB6PVUT"
+    link: "https://www.coursera.org/account/accomplishments/verify/JE4DLRB6PVUT",
+    logo: "https://upload.wikimedia.org/wikipedia/en/d/d3/University_of_London_logo.svg" // UoL Logo
   }
 ];
 // --- Components ---
@@ -563,18 +573,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Certifications Section */}
-        <section id="certifications" className="py-24 px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-24 text-center flex flex-col items-center"
-          >
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">Certifications</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-{CERTIFICATIONS.map((cert, index) => (
+        {CERTIFICATIONS.map((cert, index) => (
   <motion.div 
     key={index} 
     initial={{ opacity: 0, scale: 0.95 }} 
@@ -582,24 +581,26 @@ export default function App() {
     viewport={{ once: true }} 
     transition={{ delay: index * 0.1 }}
   >
-    {/* Wrap the card in a link tag */}
-    <a 
-      href={cert.link} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="block h-full no-underline"
-    >
-      <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors cursor-pointer">
-        <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">
-          {cert.title}
-        </h3>
+    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="block h-full no-underline">
+      <GlassCard className="relative flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+        
+        {/* Subtle Background Shade/Glow */}
+        <div className="absolute -top-4 -right-4 w-16 h-16 bg-white/5 rounded-full blur-2xl group-hover:bg-yellow-400/10 transition-colors" />
+
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors pr-8">
+            {cert.title}
+          </h3>
+          {/* Organization Logo */}
+          <img 
+            src={cert.logo} 
+            alt={cert.issuer} 
+            className="w-8 h-8 object-contain filter grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100"
+          />
+        </div>
+
         <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
         <div className="mt-auto text-xs font-mono text-gray-500">{cert.date}</div>
-        
-        {/* Optional: Add a small "View Credential" hint that appears on hover */}
-        <div className="mt-2 text-[10px] text-yellow-400/0 group-hover:text-yellow-400/80 transition-colors font-bold uppercase tracking-wider">
-          View Credential →
-        </div>
       </GlassCard>
     </a>
   </motion.div>
