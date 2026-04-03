@@ -111,7 +111,7 @@ const CERTIFICATIONS = [
     logo: "/logos/efset.png"
   },
   {
-    title: "IoT for Everyone",
+    title: "Internet of Things (IoT) for Everyone",
     issuer: "Higher Education Commission PK",
     date: "Aug 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW",
