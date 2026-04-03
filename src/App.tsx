@@ -59,8 +59,6 @@ const EXPERIENCES = [
 
 const PROJECTS = [
   {
-const PROJECTS = [
-  {
     title: "NLP Grammar Correction System",
     description: "Developed an interactive NLP-based grammar correction system using Transformer models (BERT/T5) for real-time text refinement, deployed via Gradio.",
     tags: ["NLP", "Transformers", "PyTorch", "Gradio"],
