@@ -114,7 +114,7 @@ const CERTIFICATIONS = [
   },
   {
     title: "Generative AI and LLMs: Architecture and Data Preparation",
-    issuer: "International Business Machines (IBM)",
+    issuer: "IBM",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB",
     logo: "/logos/ibm.png"
@@ -149,7 +149,7 @@ const CERTIFICATIONS = [
   },
   {
     title: "Machine Learning Specialization",
-    issuer: "Stanford Online",
+    issuer: "Stanford University | Deep Learning.AI",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O",
     logo: "/logos/stanford.png"
