@@ -164,7 +164,7 @@ const CERTIFICATIONS = [
     issuer: "Google",
     date: "Jul 2023",
     link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK",
-    logo: "/logos/google.webp"
+    logo: "/logos/google.png"
   },
   {
     title: "Understanding Research Methods",
