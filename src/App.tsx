@@ -185,18 +185,15 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 const StarryBackground = () => {
-  const starsCount = 100;
+  const starsCount = 80; // Fewer stars makes it look cleaner and more "fine"
   
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
       {[...Array(starsCount)].map((_, i) => {
-        // Varying sizes: 1px, 2px, and 3px for depth
+        // Variable sizes: Some are 1px, 2px, and a few are 3px (the "bright" ones)
         const sizeRand = Math.random();
-        const size = sizeRand > 0.9 ? '3px' : sizeRand > 0.7 ? '2px' : '1px';
-        
-        // Randomize brightness and glow
-        const opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
-        const hasGlow = sizeRand > 0.8;
+        const size = sizeRand > 0.9 ? '3px' : sizeRand > 0.6 ? '2px' : '1px';
+        const isBright = sizeRand > 0.8;
 
         return (
           <motion.div
@@ -205,22 +202,26 @@ const StarryBackground = () => {
             style={{
               width: size,
               height: size,
+              // Start them spread across the screen
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: opacity,
-              boxShadow: hasGlow ? '0 0 12px 2px rgba(255, 255, 255, 0.4)' : 'none',
+              opacity: isBright ? 0.7 : 0.3,
+              // Add a glow to the larger stars so they don't look like dust
+              boxShadow: isBright ? '0 0 10px 1px rgba(255, 255, 255, 0.6)' : 'none',
             }}
             animate={{
-              // Smooth, slow drift in various directions
-              x: [0, Math.random() * 60 - 30],
-              y: [0, Math.random() * 60 - 30],
-              // Subtle twinkle/shimmer effect
-              opacity: [opacity, opacity * 0.4, opacity],
+              // ANGLED MOVEMENT: Moving negative X (left) and negative Y (up)
+              // This creates the "Bottom-Right to Top-Left" drift
+              x: [0, -100], 
+              y: [0, -80],
+              // Twinkle effect
+              opacity: isBright ? [0.7, 0.3, 0.7] : [0.3, 0.1, 0.3],
             }}
             transition={{
-              duration: Math.random() * 15 + 15, // 15-30 seconds per drift cycle
+              // SLOWWW: 40 to 80 seconds for a single drift cycle
+              duration: Math.random() * 40 + 40, 
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear", 
             }}
           />
         );
@@ -228,7 +229,6 @@ const StarryBackground = () => {
     </div>
   );
 };
-
 export default function App() {
   const [quote, setQuote] = useState(FUN_FACTS[0]);
   const [availableIndices, setAvailableIndices] = useState<number[]>(
