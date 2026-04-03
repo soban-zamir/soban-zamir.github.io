@@ -184,6 +184,36 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
+const StarryBackground = () => {
+  const starsCount = 100;
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
+      {[...Array(starsCount)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-white opacity-40"
+          style={{
+            width: Math.random() > 0.9 ? '2px' : '1px',
+            height: Math.random() > 0.9 ? '2px' : '1px',
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 200 - 100],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: Math.random() * 100 + 100,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default function App() {
   const [quote, setQuote] = useState(FUN_FACTS[0]);
   const [availableIndices, setAvailableIndices] = useState<number[]>(
@@ -302,12 +332,14 @@ export default function App() {
     }, 10); 
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1f1f1f] to-[#2d2d2d] text-gray-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
-      {/* Mesh Grid Overlay */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03]" 
-           style={{ backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-      </div>
+return (
+    <div className="min-h-screen bg-[#000000] text-gray-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
+      
+      {/* 1. Moving Stars Background */}
+      <StarryBackground />
+
+      {/* 2. Subtle Depth Overlay (Replaces the Grid) */}
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/10 to-[#000000]"> </div>
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#1f1f1f]/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
