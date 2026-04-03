@@ -445,7 +445,7 @@ return (
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[#1f1f1f] border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
+              className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
             >
               {NAV_LINKS.map(link => {
                 if (link === 'CV') {
@@ -454,9 +454,9 @@ return (
                       key={link}
                       href={CV_URL}
                       download="CV - Muhammad Soban Zamir.pdf"
-                      className="block w-full text-left text-2xl font-bold text-yellow-400 flex items-center gap-2"
+                      className="block w-full text-left text-2xl font-bold text-white flex items-center gap-2"
                     >
-                      <FileText className="w-6 h-6" /> {link}
+                      <FileText className="w-6 h-6 text-white" /> {link}
                     </a>
                   );
                 }
@@ -464,20 +464,21 @@ return (
                   <button 
                     key={link}
                     onClick={() => scrollTo(link.toLowerCase())}
-                    className="block w-full text-left text-xl font-medium text-gray-400 hover:text-yellow-400 transition-colors"
+                    className={`block w-full text-left text-xl font-medium transition-colors ${activeSection === link ? 'text-white' : 'text-gray-400' }`}
                   >
                     {link}
                   </button>
                 );
               })}
               <div className="flex items-center gap-6 pt-4 border-t border-white/5">
-                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-gray-400"><Linkedin className="w-6 h-6" /></a>
-                <a href="https://github.com/soban-zamir" className="text-gray-400"><Github className="w-6 h-6" /></a>
-                <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400"><Mail className="w-6 h-6" /></a>
+                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white hover:text-gray-400 transition-colors"><Linkedin className="w-6 h-6" /></a>
+                <a href="https://github.com/soban-zamir" className="text-white hover:text-gray-400 transition-colors"><Github className="w-6 h-6" /></a>
+                <a href="mailto:sobanzamirm@gmail.com" className="text-white hover:text-gray-400 transition-colors"><Mail className="w-6 h-6" /></a>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+      
       </nav>
 
       <main className="relative z-10">
