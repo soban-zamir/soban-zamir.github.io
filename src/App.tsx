@@ -108,70 +108,70 @@ const CERTIFICATIONS = [
     issuer: "EF SET",
     date: "Feb 2026",
     link: "https://cert.efset.org/en/xC2ir1",
-    logo: "https://www.efset.org/favicon.ico"
+    logo: "/logos/efset.jpg"
   },
   {
-    title: "Internet of Things (IoT) for Everyone",
+    title: "IoT for Everyone",
     issuer: "Higher Education Commission PK",
     date: "Aug 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Coursera_logo.png"
+    logo: "/logos/hec.png"
   },
   {
     title: "Generative AI and LLMs: Architecture and Data Preparation",
     issuer: "International Business Machines (IBM)",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+    logo: "/logos/ibm.png"
   },
   {
     title: "Generative AI Language Modeling with Transformers",
     issuer: "IBM",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/VJXEE2DM6P0J",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+    logo: "/logos/ibm.png"
   },
   {
     title: "Generative AI Engineering and Fine-Tuning Transformers",
     issuer: "IBM",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/1IOM07B8KKOU",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+    logo: "/logos/ibm.png"
   },
   {
     title: "Gen AI Foundational Models for NLP & Language Understanding",
     issuer: "IBM",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/verify/Q4H07TTL108C",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+    logo: "/logos/ibm.png"
   },
   {
     title: "Deep Learning Specialization",
     issuer: "DeepLearning.AI",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/specialization/LV9KFG8ZGEY1",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/DeepLearning.AI_logo.png"
+    logo: "/logos/deeplearningai.png"
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Stanford Online",
     date: "Jul 2025",
     link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O",
-    logo: "https://upload.wikimedia.org/wikipedia/en/b/b7/Stanford_University_seal.svg"
+    logo: "/logos/stanford.png"
   },
   {
     title: "Foundations of Cybersecurity",
     issuer: "Google",
     date: "Jul 2023",
     link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Reference_Logo.svg"
+    logo: "/logos/google.webp"
   },
   {
     title: "Understanding Research Methods",
     issuer: "SOAS University of London",
     date: "Jul 2023",
     link: "https://www.coursera.org/account/accomplishments/verify/JE4DLRB6PVUT",
-    logo: "https://upload.wikimedia.org/wikipedia/en/d/d3/University_of_London_logo.svg"
+    logo: "/logos/soas.png"
   }
 ];
 // --- Components ---
