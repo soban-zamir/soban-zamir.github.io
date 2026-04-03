@@ -428,9 +428,9 @@ return (
 </a>
             </div>
 
-            {/* Mobile Menu Button */}
+{/* Mobile Menu Button */}
             <button 
-              className="md:hidden text-gray-400 hover:text-white p-2"
+              className="md:hidden text-white active:bg-white/10 p-2 rounded-lg transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -448,32 +448,47 @@ return (
               className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
             >
               {NAV_LINKS.map(link => {
-                if (link === 'CV') {
+                const isCV = link === 'CV';
+                const isActive = activeSection === link;
+
+                if (isCV) {
                   return (
                     <a 
                       key={link}
                       href={CV_URL}
                       download="CV - Muhammad Soban Zamir.pdf"
-                      className="block w-full text-left text-2xl font-bold text-white flex items-center gap-2"
+                      className="block w-full text-left text-2xl font-bold text-white flex items-center gap-2 active:text-gray-400 transition-colors"
                     >
-                      <FileText className="w-6 h-6 text-white" /> {link}
+                      <FileText className="w-6 h-6" /> {link}
                     </a>
                   );
                 }
+
                 return (
                   <button 
                     key={link}
                     onClick={() => scrollTo(link.toLowerCase())}
-                    className={`block w-full text-left text-xl font-medium transition-colors ${activeSection === link ? 'text-white' : 'text-gray-400' }`}
+                    className={`block w-full text-left text-xl font-medium transition-all duration-300 flex items-center gap-3
+                      ${isActive ? 'text-white translate-x-2' : 'text-gray-500'} 
+                      active:text-white active:translate-x-4`}
                   >
+                    {/* Visual Indicator for Active Section */}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="activeDotMobile" 
+                        className="w-1.5 h-1.5 bg-white rounded-full"
+                      />
+                    )}
                     {link}
                   </button>
                 );
               })}
-              <div className="flex items-center gap-6 pt-4 border-t border-white/5">
-                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white hover:text-gray-400 transition-colors"><Linkedin className="w-6 h-6" /></a>
-                <a href="https://github.com/soban-zamir" className="text-white hover:text-gray-400 transition-colors"><Github className="w-6 h-6" /></a>
-                <a href="mailto:sobanzamirm@gmail.com" className="text-white hover:text-gray-400 transition-colors"><Mail className="w-6 h-6" /></a>
+
+              {/* Social Icons with tap feedback */}
+              <div className="flex items-center gap-8 pt-6 border-t border-white/5">
+                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-125 transition-transform"><Linkedin className="w-6 h-6" /></a>
+                <a href="https://github.com/soban-zamir" className="text-white active:scale-125 transition-transform"><Github className="w-6 h-6" /></a>
+                <a href="mailto:sobanzamirm@gmail.com" className="text-white active:scale-125 transition-transform"><Mail className="w-6 h-6" /></a>
               </div>
             </motion.div>
           )}
