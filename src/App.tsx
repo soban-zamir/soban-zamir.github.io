@@ -185,66 +185,59 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 
-const AnimatedMesh = () => {
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-black">
-      {/* 1. The Thin Static Grid */}
-      <div 
-        className="absolute inset-0 opacity-[0.07]" 
-        style={{ 
-          backgroundImage: `
-            linear-gradient(to right, #ffffff 1px, transparent 1px),
-            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
-      
-      {/* 2. The Moving "Scanner" Beam */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.05), transparent)',
-          height: '50%',
-          width: '100%',
-        }}
-        animate={{
-          y: ['-100%', '200%'],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
+const NeuralNetwork = () => {
+  const nodes = 30; // Fewer nodes make the strong lines stand out more
+  const [points, setPoints] = useState<{x: number, y: number, vx: number, vy: number}[]>([]);
 
-      {/* 3. Pulsing Intersection Points (Nodes) */}
-      <div className="absolute inset-0 flex flex-wrap justify-around items-around opacity-30">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-1 h-1 bg-cyan-500/40 rounded-full blur-[1px]"
-            style={{
-              position: 'absolute',
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0.1, 0.6, 0.1],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
+  useEffect(() => {
+    const p = Array.from({ length: nodes }).map(() => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      vx: (Math.random() - 0.5) * 0.2, // Slow drift speed
+      vy: (Math.random() - 0.5) * 0.2,
+    }));
+    setPoints(p);
+
+    const interval = setInterval(() => {
+      setPoints(prev => prev.map(pt => ({
+        ...pt,
+        x: (pt.x + pt.vx + 100) % 100,
+        y: (pt.y + pt.vy + 100) % 100,
+      })));
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
+      <svg className="w-full h-full opacity-40">
+        {points.map((p1, i) => (
+          <React.Fragment key={i}>
+            {/* The Nodes */}
+            <circle cx={`${p1.x}%`} cy={`${p1.y}%`} r="2" fill="white" />
+            
+            {/* The Strong Lines */}
+            {points.slice(i + 1).map((p2, j) => {
+              const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+              if (dist < 15) { // Connection distance
+                return (
+                  <line
+                    key={j}
+                    x1={`${p1.x}%`} y1={`${p1.y}%`}
+                    x2={`${p2.x}%`} y2={`${p2.y}%`}
+                    stroke="rgba(255, 255, 255, 0.8)"
+                    strokeWidth="2.5" // Increased for "Strong Line" effect
+                  />
+                );
+              }
+              return null;
+            })}
+          </React.Fragment>
         ))}
-      </div>
+      </svg>
     </div>
   );
 };
-
 
 
 export default function App() {
@@ -367,15 +360,14 @@ export default function App() {
 
 
   
-  
   return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
       
-      {/* The Animated Mesh background replaces the stars and the depth overlay */}
-      <AnimatedMesh />
+      {/* Updated to the Neural Connection logic */}
+      <NeuralNetwork />
 
-      {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
                 <span>Muhammad Soban Zamir</span>
