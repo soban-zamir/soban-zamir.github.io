@@ -9,20 +9,17 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  ChevronDown, 
-  Terminal, 
-  Database, 
-  Cpu, 
-  Network, 
-  ExternalLink,
   Send,
   CheckCircle2,
   Menu,
-  X
+  X,
+  FileText
 } from 'lucide-react';
 
 // --- Data ---
-const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact'];
+const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact', 'CV'];
+
+const CV_URL = "https://raw.githubusercontent.com/soban-zamir/soban-zamir/main/CV%20-%20Muhammad%20Soban%20Zamir.pdf";
 
 const FUN_FACTS = [
   "Octopuses have three hearts, nine brains, and blue blood.",
@@ -234,7 +231,8 @@ export default function App() {
   // Scroll spy
   useEffect(() => {
     const handleScroll = () => {
-      const sections = NAV_LINKS.map(link => document.getElementById(link.toLowerCase()));
+      // Exclude CV from scroll spy since it's a download link
+      const sections = NAV_LINKS.filter(l => l !== 'CV').map(link => document.getElementById(link.toLowerCase()));
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -250,27 +248,25 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-const scrollTo = (id: string) => {
-  // 1. Immediately close the menu so we can see the page
-  setIsMenuOpen(false);
+  const scrollTo = (id: string) => {
+    setIsMenuOpen(false);
 
-  // 2. Small delay to let the menu close animation start
-  setTimeout(() => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Height of your fixed navbar
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  }, 10); 
-};
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 10); 
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1f1f1f] to-[#2d2d2d] text-gray-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
@@ -288,15 +284,29 @@ const scrollTo = (id: string) => {
           
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map(link => (
-              <button 
-                key={link}
-                onClick={() => scrollTo(link.toLowerCase())}
-                className={`text-sm font-medium transition-colors hover:text-yellow-400 ${activeSection === link ? 'text-yellow-400' : 'text-gray-400'}`}
-              >
-                {link}
-              </button>
-            ))}
+            {NAV_LINKS.map(link => {
+              if (link === 'CV') {
+                return (
+                  <a 
+                    key={link}
+                    href={CV_URL}
+                    download="CV - Muhammad Soban Zamir.pdf"
+                    className="text-sm font-bold text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
+                  >
+                    <FileText className="w-4 h-4" /> {link}
+                  </a>
+                );
+              }
+              return (
+                <button 
+                  key={link}
+                  onClick={() => scrollTo(link.toLowerCase())}
+                  className={`text-sm font-medium transition-colors hover:text-yellow-400 ${activeSection === link ? 'text-yellow-400' : 'text-gray-400'}`}
+                >
+                  {link}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
@@ -325,15 +335,29 @@ const scrollTo = (id: string) => {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden bg-[#1f1f1f] border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
             >
-              {NAV_LINKS.map(link => (
-                <button 
-                  key={link}
-                  onClick={() => scrollTo(link.toLowerCase())}
-                  className="block w-full text-left text-xl font-medium text-gray-400 hover:text-yellow-400 transition-colors"
-                >
-                  {link}
-                </button>
-              ))}
+              {NAV_LINKS.map(link => {
+                if (link === 'CV') {
+                  return (
+                    <a 
+                      key={link}
+                      href={CV_URL}
+                      download="CV - Muhammad Soban Zamir.pdf"
+                      className="block w-full text-left text-2xl font-bold text-yellow-400 flex items-center gap-2"
+                    >
+                      <FileText className="w-6 h-6" /> {link}
+                    </a>
+                  );
+                }
+                return (
+                  <button 
+                    key={link}
+                    onClick={() => scrollTo(link.toLowerCase())}
+                    className="block w-full text-left text-xl font-medium text-gray-400 hover:text-yellow-400 transition-colors"
+                  >
+                    {link}
+                  </button>
+                );
+              })}
               <div className="flex items-center gap-6 pt-4 border-t border-white/5">
                 <a href="https://www.linkedin.com/in/sobanzamir/" className="text-gray-400"><Linkedin className="w-6 h-6" /></a>
                 <a href="https://github.com/soban-zamir" className="text-gray-400"><Github className="w-6 h-6" /></a>
@@ -501,7 +525,7 @@ const scrollTo = (id: string) => {
                   </div>
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">{project.title}</h3>
-                    <a href={project.link} className="text-gray-400 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
+                    <a href={project.link} className="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a>
                   </div>
                   <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-auto">
