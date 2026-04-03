@@ -185,13 +185,19 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 const StarryBackground = () => {
-  const starsCount = 80; // Reduced count so it doesn't look cluttered
+  const starsCount = 100;
+  
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
       {[...Array(starsCount)].map((_, i) => {
-        const size = Math.random() > 0.9 ? '2px' : '1px';
-        const isBright = Math.random() > 0.8;
+        // Varying sizes: 1px, 2px, and 3px for depth
+        const sizeRand = Math.random();
+        const size = sizeRand > 0.9 ? '3px' : sizeRand > 0.7 ? '2px' : '1px';
         
+        // Randomize brightness and glow
+        const opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
+        const hasGlow = sizeRand > 0.8;
+
         return (
           <motion.div
             key={i}
@@ -201,18 +207,18 @@ const StarryBackground = () => {
               height: size,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: isBright ? 0.8 : 0.4,
-              // This adds the "fine" star glow
-              boxShadow: isBright ? '0 0 8px 1px rgba(255, 255, 255, 0.4)' : 'none',
+              opacity: opacity,
+              boxShadow: hasGlow ? '0 0 12px 2px rgba(255, 255, 255, 0.4)' : 'none',
             }}
             animate={{
-              // Very slow drift to simulate deep space
-              y: [0, Math.random() * 40 - 20],
-              x: [0, Math.random() * 40 - 20],
-              opacity: isBright ? [0.8, 0.4, 0.8] : [0.4, 0.2, 0.4],
+              // Smooth, slow drift in various directions
+              x: [0, Math.random() * 60 - 30],
+              y: [0, Math.random() * 60 - 30],
+              // Subtle twinkle/shimmer effect
+              opacity: [opacity, opacity * 0.4, opacity],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 15 + 15, // 15-30 seconds per drift cycle
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -341,11 +347,10 @@ export default function App() {
     }, 10); 
   };
 
-return (
-    <div className="min-h-screen bg-[#000000] text-gray-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
-      
-      {/* 1. Moving Stars Background */}
+  return (
+    <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
       <StarryBackground />
+      {/* Rest of your components... */}
 
       {/* 2. Subtle Depth Overlay (Replaces the Grid) */}
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/10 to-[#000000]"> </div>
