@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -185,56 +180,56 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 
-const NeuralNetwork = () => {
-  const nodes = 30; // Fewer nodes make the strong lines stand out more
-  const [points, setPoints] = useState<{x: number, y: number, vx: number, vy: number}[]>([]);
-
-  useEffect(() => {
-    const p = Array.from({ length: nodes }).map(() => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      vx: (Math.random() - 0.5) * 0.2, // Slow drift speed
-      vy: (Math.random() - 0.5) * 0.2,
-    }));
-    setPoints(p);
-
-    const interval = setInterval(() => {
-      setPoints(prev => prev.map(pt => ({
-        ...pt,
-        x: (pt.x + pt.vx + 100) % 100,
-        y: (pt.y + pt.vy + 100) % 100,
-      })));
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
-
+const AuroraBackground = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
-      <svg className="w-full h-full opacity-40">
-        {points.map((p1, i) => (
-          <React.Fragment key={i}>
-            {/* The Nodes */}
-            <circle cx={`${p1.x}%`} cy={`${p1.y}%`} r="2" fill="white" />
-            
-            {/* The Strong Lines */}
-            {points.slice(i + 1).map((p2, j) => {
-              const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-              if (dist < 15) { // Connection distance
-                return (
-                  <line
-                    key={j}
-                    x1={`${p1.x}%`} y1={`${p1.y}%`}
-                    x2={`${p2.x}%`} y2={`${p2.y}%`}
-                    stroke="rgba(255, 255, 255, 0.8)"
-                    strokeWidth="2.5" // Increased for "Strong Line" effect
-                  />
-                );
-              }
-              return null;
-            })}
-          </React.Fragment>
-        ))}
-      </svg>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#000000]">
+      {/* Deep Indigo Glow */}
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full bg-indigo-900/20 blur-[120px]"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{ top: '-10%', left: '-10%' }}
+      />
+
+      {/* Subtle Cyan/Teal Glow */}
+      <motion.div
+        className="absolute w-[500px] h-[500px] rounded-full bg-cyan-900/10 blur-[100px]"
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 120, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
+        style={{ bottom: '10%', right: '5%' }}
+      />
+
+      {/* Center Dark Violet Depth */}
+      <motion.div
+        className="absolute w-[800px] h-[800px] rounded-full bg-violet-950/10 blur-[150px]"
+        animate={{
+          opacity: [0.3, 0.5, 0.3],
+          scale: [0.8, 1, 0.8],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{ top: '20%', left: '20%' }}
+      />
     </div>
   );
 };
@@ -359,12 +354,11 @@ export default function App() {
   };
 
 
-  
   return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
       
-      {/* Updated to the Neural Connection logic */}
-      <NeuralNetwork />
+      {/* The Aurora logic - Clean, deep, and high-end */}
+      <AuroraBackground />
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         
