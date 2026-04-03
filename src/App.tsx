@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Github, 
   Linkedin, 
@@ -16,7 +16,9 @@ import {
   Network, 
   ExternalLink,
   Send,
-  CheckCircle2
+  CheckCircle2,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- Data ---
@@ -152,13 +154,13 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 export default function App() {
-  // Logic to prevent repeats: Store indices of facts not yet shown
   const [quote, setQuote] = useState(FUN_FACTS[0]);
   const [availableIndices, setAvailableIndices] = useState<number[]>(
-    FUN_FACTS.map((_, i) => i).filter(idx => idx !== 0) // Start with all except the first one displayed
+    FUN_FACTS.map((_, i) => i).filter(idx => idx !== 0)
   );
 
   const [activeSection, setActiveSection] = useState('About');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Typewriter effect state
   const [titleIndex, setTitleIndex] = useState(0);
@@ -217,21 +219,14 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, titleIndex]);
 
-  // Updated generateQuote to prevent repeats until full cycle is complete
   const generateQuote = () => {
     let pool = [...availableIndices];
-
-    // If pool is empty, reset it with all indices
     if (pool.length === 0) {
       pool = FUN_FACTS.map((_, i) => i);
     }
-
     const randomIndexInPool = Math.floor(Math.random() * pool.length);
     const factIndex = pool[randomIndexInPool];
-
-    // Remove chosen index from pool
     pool.splice(randomIndexInPool, 1);
-
     setQuote(FUN_FACTS[factIndex]);
     setAvailableIndices(pool);
   };
@@ -263,6 +258,7 @@ export default function App() {
         behavior: 'smooth'
       });
     }
+    setIsMenuOpen(false); // Close menu on click
   };
 
   return (
@@ -279,6 +275,7 @@ export default function App() {
             <span>Muhammad Soban Zamir</span>
           </div>
           
+          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(link => (
               <button 
@@ -292,72 +289,104 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0A66C2] transition-colors" title="LinkedIn"><Linkedin className="w-5 h-5" /></a>
-            <a href="https://github.com/soban-zamir" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" title="GitHub"><Github className="w-5 h-5" /></a>
-            <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400 hover:text-[#EA4335] transition-colors" title="Email"><Mail className="w-5 h-5" /></a>
+            <div className="hidden sm:flex items-center gap-4 mr-2">
+               <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0A66C2] transition-colors" title="LinkedIn"><Linkedin className="w-5 h-5" /></a>
+               <a href="https://github.com/soban-zamir" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" title="GitHub"><Github className="w-5 h-5" /></a>
+               <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400 hover:text-[#EA4335] transition-colors" title="Email"><Mail className="w-5 h-5" /></a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden text-gray-400 hover:text-white p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-[#1f1f1f] border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
+            >
+              {NAV_LINKS.map(link => (
+                <button 
+                  key={link}
+                  onClick={() => scrollTo(link.toLowerCase())}
+                  className="block w-full text-left text-xl font-medium text-gray-400 hover:text-yellow-400 transition-colors"
+                >
+                  {link}
+                </button>
+              ))}
+              <div className="flex items-center gap-6 pt-4 border-t border-white/5">
+                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-gray-400"><Linkedin className="w-6 h-6" /></a>
+                <a href="https://github.com/soban-zamir" className="text-gray-400"><Github className="w-6 h-6" /></a>
+                <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400"><Mail className="w-6 h-6" /></a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="relative z-10">
- 
-        
         {/* Hero Section */}
-<section id="about" className="min-h-screen flex flex-col items-center justify-center pt-16 px-6 relative">
-  <motion.div 
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="max-w-4xl w-full flex flex-col items-center text-center gap-5" // Reduced gap
-  >
-    <div>
-      <h1 className="text-5xl md:text-6xl font-bold text-white mb-1 tracking-tight"> {/* Reduced size and margin */}
-        Hi, I'm <span className="text-yellow-400">Soban</span>
-      </h1>
-      <h2 className="text-xl md:text-2xl text-gray-400 font-light h-8"> {/* Slightly smaller h2 */}
-        {displayedText}<span className="animate-pulse text-yellow-400">|</span>
-      </h2>
-    </div>
+        <section id="about" className="min-h-screen flex flex-col items-center justify-center pt-16 px-6 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl w-full flex flex-col items-center text-center gap-5"
+          >
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-1 tracking-tight">
+                Hi, I'm <span className="text-yellow-400">Soban</span>
+              </h1>
+              <h2 className="text-xl md:text-2xl text-gray-400 font-light h-8">
+                {displayedText}<span className="animate-pulse text-yellow-400">|</span>
+              </h2>
+            </div>
 
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.4, duration: 0.8 }}
-      className="relative"
-    >
-      {/* Reduced Image Size */}
-      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-[#0a0a0a] shadow-[0_0_20px_rgba(0,0,0,0.8)] mx-auto">
-        <img 
-          src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
-          alt="Muhammad Soban Zamir" 
-          className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
-          referrerPolicy="no-referrer"
-        />
-      </div>
-    </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="relative"
+            >
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-[#0a0a0a] shadow-[0_0_20px_rgba(0,0,0,0.8)] mx-auto">
+                <img 
+                  src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
+                  alt="Muhammad Soban Zamir" 
+                  className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </motion.div>
 
-    <div className="flex flex-col items-center gap-4"> {/* Reduced gap */}
-      <button 
-        onClick={generateQuote}
-        className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm font-medium transition-all flex items-center gap-2 group"
-      >
-        Fun Fact👆
-      </button>
+            <div className="flex flex-col items-center gap-4">
+              <button 
+                onClick={generateQuote}
+                className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm font-medium transition-all flex items-center gap-2 group"
+              >
+                Fun Fact👇
+              </button>
 
-      {/* Quote Display - More compact padding */}
-      <motion.div 
-        key={quote}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic text-center"
-      >
-        "{quote}"
-      </motion.div>
-    </div>
-  </motion.div>
-</section>
+              <motion.div 
+                key={quote}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic text-center"
+              >
+                "{quote}"
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
 
-        
         {/* Overview Section */}
         <section id="overview" className="py-24 px-6 max-w-6xl mx-auto">
           <motion.div
@@ -385,7 +414,6 @@ export default function App() {
           </motion.div>
 
           <div className="relative max-w-5xl mx-auto">
-            {/* Center Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-white/20 hidden md:block"></div>
             
             {EXPERIENCES.map((exp, index) => {
@@ -552,7 +580,6 @@ export default function App() {
 
         <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
           <p>© {new Date().getFullYear()} Muhammad Soban Zamir</p>
-       
         </footer>
       </main>
     </div>
