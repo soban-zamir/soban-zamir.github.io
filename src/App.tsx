@@ -389,7 +389,7 @@ return (
                 <button 
                   key={link}
                   onClick={() => scrollTo(link.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-yellow-400 ${activeSection === link ? 'text-yellow-400' : 'text-gray-400'}`}
+                  className={`text-sm font-medium transition-colors hover:text-white ${activeSection === link ? 'text-white' : 'text-gray-400' }`}
                 >
                   {link}
                 </button>
@@ -399,9 +399,33 @@ return (
 
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-4 mr-2">
-               <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0A66C2] transition-colors" title="LinkedIn"><Linkedin className="w-5 h-5" /></a>
-               <a href="https://github.com/soban-zamir" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" title="GitHub"><Github className="w-5 h-5" /></a>
-               <a href="mailto:sobanzamirm@gmail.com" className="text-gray-400 hover:text-[#EA4335] transition-colors" title="Email"><Mail className="w-5 h-5" /></a>
+<a 
+  href="https://www.linkedin.com/in/sobanzamir/" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="text-white hover:text-[#0A66C2] transition-colors duration-300" 
+  title="LinkedIn"
+>
+  <Linkedin className="w-5 h-5" />
+</a>
+
+<a 
+  href="https://github.com/soban-zamir" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="text-white hover:text-[#ff0000] transition-colors duration-300" 
+  title="GitHub"
+>
+  <Github className="w-5 h-5" />
+</a>
+
+<a 
+  href="mailto:sobanzamirm@gmail.com" 
+  className="text-white hover:text-[#00ff00] transition-colors duration-300" 
+  title="Email"
+>
+  <Mail className="w-5 h-5" />
+</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -497,15 +521,17 @@ return (
               >
                 Fun Fact😎
               </button>
-
+          
               <motion.div 
-                key={quote}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic text-center"
-              >
-                "{quote}"
-              </motion.div>
+              key={quote}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-md p-3 text-xs md:text-sm font-mono text-white italic text-center"
+            >
+              "{quote}"
+            </motion.div>
+              
+ 
             </div>
           </motion.div>
         </section>
