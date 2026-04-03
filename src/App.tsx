@@ -106,40 +106,46 @@ const CERTIFICATIONS = [
   {
     title: "English Language Proficiency (C1 Advanced)",
     issuer: "EF SET",
-    date: "Feb 2026"
+    date: "Feb 2026",
+    link: "https://cert.efset.org/en/xC2ir1"
   },
   {
     title: "IoT for Everyone",
     issuer: "Higher Education Commission PK",
-    date: "Aug 2025"
+    date: "Aug 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW"
   },
   {
     title: "LLM & Generative AI Series",
     issuer: "International Business Machines (IBM)",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB"
   },
   {
     title: "Deep Learning Specialization",
     issuer: "DeepLearning.AI",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Stanford Online",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
   },
   {
     title: "Foundations of Cybersecurity",
     issuer: "Google",
-    date: "Jul 2023"
+    date: "Jul 2023",
+    link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK"
   },
   {
     title: "Understanding Research Methods",
     issuer: "SOAS University of London",
-    date: "Jul 2023"
+    date: "Jul 2023",
+    link: "https://www.coursera.org/account/accomplishments/verify/JE4DLRB6PVUT"
   }
 ];
-
 // --- Components ---
 
 const GlassCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
