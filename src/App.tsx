@@ -59,39 +59,48 @@ const EXPERIENCES = [
 
 const PROJECTS = [
   {
-    title: "IoT Enabled Smart Irrigation System",
-    description: "An automated system designed to optimize water usage using real-time sensor data and IoT connectivity.",
-    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/IoT%20Enabled%20Smart%20Irrigation%20System.png",
-    tags: ["IoT", "Automation", "Embedded Systems"],
-    link: "#"
-  },
+const PROJECTS = [
   {
-    title: "Biometric Access Control System",
-    description: "Security implementation using biometric verification for controlled facility access and monitoring.",
-    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Biometric%20Access%20Control%20System.jpg",
-    tags: ["Security", "Biometrics", "Embedded Systems"],
-    link: "#"
+    title: "NLP Grammar Correction System",
+    description: "Developed an interactive NLP-based grammar correction system using Transformer models (BERT/T5) for real-time text refinement, deployed via Gradio.",
+    tags: ["NLP", "Transformers", "PyTorch", "Gradio"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/NLP%20Grammar%20Correction%20System.jpg",
+    link: "https://github.com/soban-zamir/-NLP-Grammar-Correction-System-Using-Transformers"
   },
   {
     title: "Discrete Logic Electronic Slot Machine",
-    description: "A digital logic project built using sequential logic components, flip-flops, and counters.",
+    description: "Designed and implemented a discrete logic electronic slot machine, architected to emulate commercial casino machine circuitry using asynchronous random counters and logic gates.",
+    tags: ["Discrete Logic", "Electronics", "Circuit Design"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Discrete%20Logic%20Electronic%20Slot%20Machine.jpeg",
-    tags: ["Digital Logic", "Sequential Circuits", "Electronics"],
-    link: "#"
+    link: "https://github.com/soban-zamir/Discrete-Logic-Electronic-Slot-Machine"
   },
   {
     title: "MOSFET Analog Audio Amplifier",
-    description: "Design and simulation of a high-fidelity audio amplifier utilizing MOSFET characteristics.",
+    description: "Designed and implemented a MOSFET based audio amplifier capable of amplifying low level AC signals. Simulated in PSPICE and validated in hardware.",
+    tags: ["MOSFET", "PSPICE", "Audio Amplifier"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/MOSFET%20Analog%20Audio%20Amplifier.jpeg",
-    tags: ["Analog Design", "MOSFET", "Audio Engineering"],
-    link: "#"
+    link: "https://github.com/soban-zamir/-MOSFET-Designed-Analog-Audio-Amplifier"
+  },
+  {
+    title: "IoT Enabled Smart Irrigation System",
+    description: "Developed a prototype for an automatic irrigation system to optimize water usage in agriculture using embedded systems and real-time soil moisture sensors.",
+    tags: ["IoT", "Embedded Systems", "Sensors"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/IoT%20Enabled%20Smart%20Irrigation%20System.png",
+    link: "https://github.com/soban-zamir/-IoT-Enabled-Smart-Irrigation-System"
+  },
+  {
+    title: "Biometric Access Control System",
+    description: "Integrated RFID and fingerprint recognition technologies to provide secure and efficient access control.",
+    tags: ["Biometrics", "RFID", "Access Control"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Biometric%20Access%20Control%20System.jpg",
+    link: "https://github.com/soban-zamir/-Multi-Factor-Biometric-Access-Control-System"
   },
   {
     title: "AutoCAD Wiring Layout Design",
-    description: "Professional electrical schematic and wiring layout designed for standardized industrial application.",
+    description: "Designed a detailed, customized floor plan and electrical wiring layout for a residence using AutoCAD software.",
+    tags: ["AutoCAD", "Electrical Design"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/AutoCAD%20Wiring%20Layout%20Design.png",
-    tags: ["AutoCAD", "Electrical Design", "Schematics"],
-    link: "#"
+    link: "https://github.com/soban-zamir/-AutoCAD-Wiring-Layout-Design-for-Residence"
   }
 ];
 
