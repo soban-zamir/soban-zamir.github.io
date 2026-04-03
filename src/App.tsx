@@ -379,7 +379,7 @@ return (
                     key={link}
                     href={CV_URL}
                     download="CV - Muhammad Soban Zamir.pdf"
-                    className="text-sm font-bold text-grey-400 hover:text-white transition-colors flex items-center gap-1"
+                    className="text-sm font-bold text-yellow-400 hover:text-yellow-400 transition-colors flex items-center gap-1"
                   >
                     <FileText className="w-4 h-4" /> {link}
                   </a>
