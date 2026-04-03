@@ -180,56 +180,31 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
 
 
-const AuroraBackground = () => {
+const MovingGrid = () => {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#000000]">
-      {/* Deep Indigo Glow */}
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full bg-indigo-900/20 blur-[120px]"
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#000000]">
+      {/* The Grid Layer */}
+      <motion.div 
+        className="absolute inset-0 opacity-[0.15]" 
+        style={{ 
+          backgroundImage: `
+            linear-gradient(to right, #ffffff 1px, transparent 1px),
+            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+          `,
+          backgroundSize: '45px 45px' // Adjust size for "closeness"
+        }}
         animate={{
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.2, 1],
+          backgroundPosition: ['0px 0px', '45px 45px']
         }}
         transition={{
-          duration: 20,
+          duration: 8, // Adjust for speed: higher is slower
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "linear"
         }}
-        style={{ top: '-10%', left: '-10%' }}
       />
 
-      {/* Subtle Cyan/Teal Glow */}
-      <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full bg-cyan-900/10 blur-[100px]"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 120, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-        style={{ bottom: '10%', right: '5%' }}
-      />
-
-      {/* Center Dark Violet Depth */}
-      <motion.div
-        className="absolute w-[800px] h-[800px] rounded-full bg-violet-950/10 blur-[150px]"
-        animate={{
-          opacity: [0.3, 0.5, 0.3],
-          scale: [0.8, 1, 0.8],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{ top: '20%', left: '20%' }}
-      />
+      {/* The "Vignette" - fades the grid out at the edges for a premium look */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_90%)]" />
     </div>
   );
 };
@@ -353,12 +328,11 @@ export default function App() {
     }, 10); 
   };
 
-
-  return (
+return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-cyan-500/30 relative overflow-x-hidden">
       
-      {/* The Aurora logic - Clean, deep, and high-end */}
-      <AuroraBackground />
+      {/* The Moving Grid - Sharp, Clear, and Structured */}
+      <MovingGrid />
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         
