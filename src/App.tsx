@@ -326,7 +326,7 @@ export default function App() {
       className="relative"
     >
       {/* Reduced Image Size */}
-      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-[0_0_30px_rgba(250,204,21,0.2)] mx-auto">
+      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-gray-400 via-slate-600 to-slate-800 shadow-[0_0_30px_rgba(100,116,139,0.2)] mx-auto">
         <img 
           src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
           alt="Muhammad Soban Zamir" 
@@ -349,7 +349,7 @@ export default function App() {
         key={quote}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic border-t-4 border-t-yellow-400 text-center"
+        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic border-t-4 border-t-slate-500 text-center"
       >
         "{quote}"
       </motion.div>
@@ -551,8 +551,8 @@ export default function App() {
         </section>
 
         <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Muhammad Soban Zamir. All rights reserved.</p>
-          <p className="mt-2">Built with React, Tailwind CSS, & Framer Motion</p>
+          <p>© {new Date().getFullYear()} Muhammad Soban Zamir</p>
+       
         </footer>
       </main>
     </div>
