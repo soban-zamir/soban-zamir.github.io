@@ -300,60 +300,64 @@ export default function App() {
       </nav>
 
       <main className="relative z-10">
+ 
+        
         {/* Hero Section */}
-        <section id="about" className="min-h-screen flex flex-col items-center justify-center pt-20 px-6 relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl w-full flex flex-col items-center text-center gap-10"
-          >
-            <div>
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
-                Hi, I'm <span className="text-yellow-400">Soban</span>
-              </h1>
-              <h2 className="text-2xl md:text-3xl text-gray-400 font-light h-10">
-                {displayedText}<span className="animate-pulse text-yellow-400">|</span>
-              </h2>
-            </div>
+<section id="about" className="min-h-screen flex flex-col items-center justify-center pt-16 px-6 relative">
+  <motion.div 
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    className="max-w-4xl w-full flex flex-col items-center text-center gap-5" // Reduced gap
+  >
+    <div>
+      <h1 className="text-5xl md:text-6xl font-bold text-white mb-1 tracking-tight"> {/* Reduced size and margin */}
+        Hi, I'm <span className="text-yellow-400">Soban</span>
+      </h1>
+      <h2 className="text-xl md:text-2xl text-gray-400 font-light h-8"> {/* Slightly smaller h2 */}
+        {displayedText}<span className="animate-pulse text-yellow-400">|</span>
+      </h2>
+    </div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative"
-            >
-              <div className="w-56 h-56 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-[0_0_40px_rgba(250,204,21,0.3)] mx-auto">
-                <img 
-                  src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
-                  alt="Muhammad Soban Zamir" 
-                  className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </motion.div>
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.4, duration: 0.8 }}
+      className="relative"
+    >
+      {/* Reduced Image Size */}
+      <div className="w-40 h-40 md:w-48 md:h-48 rounded-full p-1 bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-[0_0_30px_rgba(250,204,21,0.2)] mx-auto">
+        <img 
+          src={`https://github.com/soban-zamir.png?v=${avatarTimestamp}`} 
+          alt="Muhammad Soban Zamir" 
+          className="w-full h-full rounded-full object-cover border-4 border-[#1f1f1f]"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    </motion.div>
 
-            <div className="flex flex-col items-center gap-6">
-              <button 
-                onClick={generateQuote}
-                className="px-8 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-medium transition-all flex items-center gap-2 group"
-              >
-                Fun Fact👆
-              </button>
+    <div className="flex flex-col items-center gap-4"> {/* Reduced gap */}
+      <button 
+        onClick={generateQuote}
+        className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm font-medium transition-all flex items-center gap-2 group"
+      >
+        Fun Fact👆
+      </button>
 
-              {/* Quote Display */}
-              <motion.div 
-                key={quote}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-lg p-4 rounded-lg bg-black/20 border border-white/5 text-sm font-mono text-gray-400 italic border-t-4 border-t-yellow-400 text-center"
-              >
-                "{quote}"
-              </motion.div>
-            </div>
-          </motion.div>
-        </section>
+      {/* Quote Display - More compact padding */}
+      <motion.div 
+        key={quote}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-md p-3 rounded-lg bg-black/20 border border-white/5 text-xs md:text-sm font-mono text-gray-400 italic border-t-4 border-t-yellow-400 text-center"
+      >
+        "{quote}"
+      </motion.div>
+    </div>
+  </motion.div>
+</section>
 
+        
         {/* Overview Section */}
         <section id="overview" className="py-24 px-6 max-w-6xl mx-auto">
           <motion.div
