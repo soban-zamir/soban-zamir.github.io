@@ -658,7 +658,7 @@ return (
                   </div>
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">{project.title}</h3>
-                    <a href={project.link} className="text-white hover:text-red-400 transition-colors" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a>
+                    <a href={project.link} className="text-red-400 hover:text-red-400 transition-colors" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a>
                   </div>
                   <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-auto">
@@ -708,12 +708,12 @@ return (
                 {cert.title}
               </h3>
               
-              {/* 2. Top-Right Logo: Grayscale to Color transition */}
-              <img 
-                src={cert.logo} 
-                alt={cert.issuer} 
-                className="w-8 h-8 object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
-              />
+            <img 
+              src={cert.logo} 
+              alt={cert.issuer} 
+              // Removed 'grayscale' and 'opacity-40' to keep original colors visible at all times
+              className="w-8 h-8 object-contain transition-all duration-500 transform group-hover:scale-110"
+            />
             </div>
 
             <div className="text-gray-400 text-sm mb-4 font-medium relative z-10">{cert.issuer}</div>
