@@ -658,7 +658,7 @@ return (
                   </div>
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">{project.title}</h3>
-                    <a href={project.link} className="text-red-400 hover:text-red-400 transition-colors" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a>
+                    <a href={project.link} className="text-red-600 hover:text-red-600 transition-colors" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a>
                   </div>
                   <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mt-auto">
