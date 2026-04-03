@@ -25,14 +25,14 @@ import {
 const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
 const FUN_FACTS = [
-  "Sharks are older than trees.",
+  "Octopuses have three hearts, nine brains, and blue blood.",
   "Honey never spoils.",
   "Scotland's national animal is the unicorn.",
   "Bananas are berries, but strawberries are not.",
   "Lobsters taste with their feet.",
   "A cloud can weigh over a million pounds.",
+  "Sharks are older than trees.",
   "Venus is the only planet that rotates clockwise.",
-  "Octopuses have three hearts, nine brains, and blue blood.",
   "The total weight of all the ants on Earth is roughly equal to the weight of all humans.",
   "A bolt of lightning is five times hotter than the surface of the sun."
 ];
