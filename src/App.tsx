@@ -538,7 +538,7 @@ return (
                 onClick={generateQuote}
                 className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm font-medium transition-all flex items-center gap-2 group"
               >
-                Fun Fact😎
+                Click for Fun Fact 😀
               </button>
           
               <motion.div 
