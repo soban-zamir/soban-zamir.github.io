@@ -209,6 +209,35 @@ const MovingGrid = () => {
   );
 };
 
+const SoundwaveVisualizer = () => {
+  return (
+    <div className="relative flex items-center justify-center h-64 w-full gap-[4px]">
+      {/* Background Glow */}
+      <div className="absolute w-64 h-32 bg-cyan-500/10 blur-[100px] rounded-full" />
+      
+      {/* Visualizer Bars */}
+      {[...Array(30)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="w-[3px] bg-cyan-500/40 rounded-full"
+          animate={{
+            height: [20, Math.random() * 100 + 40, 20],
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            delay: i * 0.05,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+      
+      {/* The "Zero Axis" Line */}
+      <div className="absolute w-full h-[1px] bg-white/10" />
+    </div>
+  );
+};
 
 export default function App() {
   const [quote, setQuote] = useState(FUN_FACTS[0]);
@@ -664,12 +693,16 @@ return (
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Get In Touch</h2>
             <div className="h-1 w-20 bg-yellow-400 rounded-full"></div>
           </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column: Form */}
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <GlassCard>
                 {formStatus === 'success' ? (
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="py-12 text-center space-y-4">
-                    <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4"><CheckCircle2 className="w-10 h-10" /></div>
+                    <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle2 className="w-10 h-10" />
+                    </div>
                     <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
                     <p className="text-gray-400">Thanks for reaching out. I'll get back to you as soon as possible.</p>
                     <button onClick={() => setFormStatus('idle')} className="text-yellow-400 hover:text-yellow-300 font-medium underline underline-offset-4">Send another message</button>
@@ -696,14 +729,32 @@ return (
                 )}
               </GlassCard>
             </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative h-96 hidden lg:flex items-center justify-center">
-              <div className="relative w-64 h-64">
-                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute inset-0 rounded-full border border-cyan-500/30 border-dashed" />
-                <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }} className="absolute inset-4 rounded-full border border-blue-500/20" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl" />
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                  <motion.path d="M 50 20 Q 70 50 50 80" fill="transparent" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="0.5" animate={{ d: ["M 50 20 Q 70 50 50 80", "M 50 20 Q 30 50 50 80", "M 50 20 Q 70 50 50 80"] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} />
-                </svg>
+
+            {/* Right Column: NEW Signal Visualizer */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }} 
+              className="hidden lg:flex items-center justify-center"
+            >
+              <div className="w-full max-w-sm bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 relative overflow-hidden shadow-2xl">
+                <div className="flex justify-between items-center mb-10">
+                  <div className="flex gap-2 items-center">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+                    <span className="text-[10px] font-mono text-cyan-500 uppercase tracking-[0.2em]">Live Signal</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-gray-500 italic">TRANSMISSION_STABLE</span>
+                </div>
+                
+                <SoundwaveVisualizer />
+                
+                <div className="mt-10 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] font-mono text-gray-500 uppercase tracking-widest">
+                  <span>Status: Ready</span>
+                  <span>Encryption: AES-256</span>
+                </div>
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                  style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }} 
+                />
               </div>
             </motion.div>
           </div>
@@ -716,4 +767,3 @@ return (
     </div>
   );
 }
-
