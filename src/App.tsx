@@ -250,16 +250,27 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
+const scrollTo = (id: string) => {
+  // 1. Immediately close the menu so we can see the page
+  setIsMenuOpen(false);
+
+  // 2. Small delay to let the menu close animation start
+  setTimeout(() => {
     const element = document.getElementById(id);
     if (element) {
+      const offset = 80; // Height of your fixed navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: offsetPosition,
         behavior: 'smooth'
       });
     }
-    setIsMenuOpen(false); // Close menu on click
-  };
+  }, 10); 
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1f1f1f] to-[#2d2d2d] text-gray-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
@@ -372,7 +383,7 @@ export default function App() {
                 onClick={generateQuote}
                 className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm font-medium transition-all flex items-center gap-2 group"
               >
-                Fun Fact👇
+                Fun Fact😎
               </button>
 
               <motion.div 
