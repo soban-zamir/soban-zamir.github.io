@@ -59,39 +59,46 @@ const EXPERIENCES = [
 
 const PROJECTS = [
   {
-    title: "IoT Enabled Smart Irrigation System",
-    description: "An automated system designed to optimize water usage using real-time sensor data and IoT connectivity.",
-    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/IoT%20Enabled%20Smart%20Irrigation%20System.png",
-    tags: ["IoT", "Automation", "Embedded Systems"],
-    link: "#"
-  },
-  {
-    title: "Biometric Access Control System",
-    description: "Security implementation using biometric verification for controlled facility access and monitoring.",
-    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Biometric%20Access%20Control%20System.jpg",
-    tags: ["Security", "Biometrics", "Embedded Systems"],
-    link: "#"
+    title: "NLP Grammar Correction System",
+    description: "Developed an interactive NLP-based grammar correction system using Transformer models (BERT/T5) for real-time text refinement, deployed via Gradio.",
+    tags: ["NLP", "Transformers", "PyTorch", "Gradio"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/NLP%20Grammar%20Correction%20System.jpg",
+    link: "https://github.com/soban-zamir/-NLP-Grammar-Correction-System-Using-Transformers"
   },
   {
     title: "Discrete Logic Electronic Slot Machine",
-    description: "A digital logic project built using sequential logic components, flip-flops, and counters.",
+    description: "Designed and implemented a discrete logic electronic slot machine, architected to emulate commercial casino machine circuitry using asynchronous random counters and logic gates.",
+    tags: ["Discrete Logic", "Electronics", "Circuit Design"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Discrete%20Logic%20Electronic%20Slot%20Machine.jpeg",
-    tags: ["Digital Logic", "Sequential Circuits", "Electronics"],
-    link: "#"
+    link: "https://github.com/soban-zamir/Discrete-Logic-Electronic-Slot-Machine"
   },
   {
     title: "MOSFET Analog Audio Amplifier",
-    description: "Design and simulation of a high-fidelity audio amplifier utilizing MOSFET characteristics.",
+    description: "Designed and implemented a MOSFET based audio amplifier capable of amplifying low level AC signals. Simulated in PSPICE and validated in hardware.",
+    tags: ["MOSFET", "PSPICE", "Audio Amplifier"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/MOSFET%20Analog%20Audio%20Amplifier.jpeg",
-    tags: ["Analog Design", "MOSFET", "Audio Engineering"],
-    link: "#"
+    link: "https://github.com/soban-zamir/-MOSFET-Designed-Analog-Audio-Amplifier"
+  },
+  {
+    title: "IoT Enabled Smart Irrigation System",
+    description: "Developed a prototype for an automatic irrigation system to optimize water usage in agriculture using embedded systems and real-time soil moisture sensors.",
+    tags: ["IoT", "Embedded Systems", "Sensors"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/IoT%20Enabled%20Smart%20Irrigation%20System.png",
+    link: "https://github.com/soban-zamir/-IoT-Enabled-Smart-Irrigation-System"
+  },
+  {
+    title: "Biometric Access Control System",
+    description: "Integrated RFID and fingerprint recognition technologies to provide secure and efficient access control.",
+    tags: ["Biometrics", "RFID", "Access Control"],
+    image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/Biometric%20Access%20Control%20System.jpg",
+    link: "https://github.com/soban-zamir/-Multi-Factor-Biometric-Access-Control-System"
   },
   {
     title: "AutoCAD Wiring Layout Design",
-    description: "Professional electrical schematic and wiring layout designed for standardized industrial application.",
+    description: "Designed a detailed, customized floor plan and electrical wiring layout for a residence using AutoCAD software.",
+    tags: ["AutoCAD", "Electrical Design"],
     image: "https://raw.githubusercontent.com/soban-zamir/soban-zamir.github.io/main/AutoCAD%20Wiring%20Layout%20Design.png",
-    tags: ["AutoCAD", "Electrical Design", "Schematics"],
-    link: "#"
+    link: "https://github.com/soban-zamir/-AutoCAD-Wiring-Layout-Design-for-Residence"
   }
 ];
 
@@ -99,40 +106,64 @@ const CERTIFICATIONS = [
   {
     title: "English Language Proficiency (C1 Advanced)",
     issuer: "EF SET",
-    date: "Feb 2026"
+    date: "Feb 2026",
+    link: "https://cert.efset.org/en/xC2ir1"
   },
   {
     title: "IoT for Everyone",
     issuer: "Higher Education Commission PK",
-    date: "Aug 2025"
+    date: "Aug 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/K6YM04K537LW"
   },
   {
-    title: "LLM & Generative AI Series",
+    title: "Generative AI and LLMs: Architecture and Data Preparation",
     issuer: "International Business Machines (IBM)",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/4UA5XS3GLJZB"
+  },
+  {
+    title: "Generative AI Language Modeling with Transformers",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/VJXEE2DM6P0J"
+  },
+  {
+    title: "Generative AI Engineering and Fine-Tuning Transformers",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/1IOM07B8KKOU"
+  },
+  {
+    title: "Gen AI Foundational Models for NLP & Language Understanding",
+    issuer: "IBM",
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/verify/Q4H07TTL108C"
   },
   {
     title: "Deep Learning Specialization",
     issuer: "DeepLearning.AI",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Stanford Online",
-    date: "Jul 2025"
+    date: "Jul 2025",
+    link: "https://www.coursera.org/account/accomplishments/specialization/U07XSRAGJM0O"
   },
   {
     title: "Foundations of Cybersecurity",
     issuer: "Google",
-    date: "Jul 2023"
+    date: "Jul 2023",
+    link: "https://www.coursera.org/account/accomplishments/verify/FQQDMB7QX9TK"
   },
   {
     title: "Understanding Research Methods",
     issuer: "SOAS University of London",
-    date: "Jul 2023"
+    date: "Jul 2023",
+    link: "https://www.coursera.org/account/accomplishments/verify/JE4DLRB6PVUT"
   }
 ];
-
 // --- Components ---
 
 const GlassCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -543,15 +574,36 @@ export default function App() {
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">Certifications</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CERTIFICATIONS.map((cert, index) => (
-              <motion.div key={index} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-                <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors">
-                  <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">{cert.title}</h3>
-                  <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
-                  <div className="mt-auto text-xs font-mono text-gray-500">{cert.date}</div>
-                </GlassCard>
-              </motion.div>
-            ))}
+{CERTIFICATIONS.map((cert, index) => (
+  <motion.div 
+    key={index} 
+    initial={{ opacity: 0, scale: 0.95 }} 
+    whileInView={{ opacity: 1, scale: 1 }} 
+    viewport={{ once: true }} 
+    transition={{ delay: index * 0.1 }}
+  >
+    {/* Wrap the card in a link tag */}
+    <a 
+      href={cert.link} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="block h-full no-underline"
+    >
+      <GlassCard className="flex flex-col h-full group hover:border-yellow-400/30 hover:bg-white/5 transition-colors cursor-pointer">
+        <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">
+          {cert.title}
+        </h3>
+        <div className="text-gray-400 text-sm mb-4">{cert.issuer}</div>
+        <div className="mt-auto text-xs font-mono text-gray-500">{cert.date}</div>
+        
+        {/* Optional: Add a small "View Credential" hint that appears on hover */}
+        <div className="mt-2 text-[10px] text-yellow-400/0 group-hover:text-yellow-400/80 transition-colors font-bold uppercase tracking-wider">
+          View Credential →
+        </div>
+      </GlassCard>
+    </a>
+  </motion.div>
+))}
           </div>
         </section>
 
