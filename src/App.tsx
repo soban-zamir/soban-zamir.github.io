@@ -14,7 +14,7 @@ import {
 // --- Data ---
 const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact', 'CV'];
 
-const CV_URL = "https://github.com/soban-zamir/soban-zamir/blob/main/CV%20-%20Muhammad%20Soban%20Zamir.pdf";
+const CV_URL = "https://raw.githubusercontent.com/soban-zamir/soban-zamir/main/CV%20-%20Muhammad%20Soban%20Zamir.pdf";
 
 const FUN_FACTS = [
   "Octopuses have three hearts, nine brains, and blue blood.",
