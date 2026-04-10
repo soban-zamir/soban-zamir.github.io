@@ -484,26 +484,7 @@ return (
   );
 })}
 
-                return (
-                  <button 
-                    key={link}
-                    onClick={() => scrollTo(link.toLowerCase())}
-                    className={`block w-full text-left text-xl font-medium transition-all duration-300 flex items-center gap-3
-                      ${isActive ? 'text-white translate-x-2' : 'text-gray-500'} 
-                      active:text-white active:translate-x-4`}
-                  >
-                    {/* Visual Indicator for Active Section */}
-                    {isActive && (
-                      <motion.div 
-                        layoutId="activeDotMobile" 
-                        className="w-1.5 h-1.5 bg-white rounded-full"
-                      />
-                    )}
-                    {link}
-                  </button>
-                );
-              })}
-
+               
               {/* Social Icons with tap feedback */}
               <div className="flex items-center gap-8 pt-6 border-t border-white/5">
                 <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-175 transition-transform"><Linkedin className="w-6 h-6" /></a>
