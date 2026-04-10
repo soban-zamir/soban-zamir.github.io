@@ -369,9 +369,19 @@ return (
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
-                <span>Muhammad Soban Zamir</span>
-          </div>
+
+          <div className="text-xl font-bold tracking-tighter text-white flex items-center gap-3">
+  <span>Muhammad Soban Zamir</span>
+
+  {/* Mobile CV Button */}
+  <a
+    href={CV_URL}
+    download="CV - Muhammad Soban Zamir.pdf"
+    className="md:hidden text-sm font-bold text-yellow-400 flex items-center gap-1"
+  >
+    <FileText className="w-4 h-4" /> CV
+  </a>
+</div>
           
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
@@ -450,22 +460,29 @@ return (
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
             >
-              {NAV_LINKS.map(link => {
-                const isCV = link === 'CV';
-                const isActive = activeSection === link;
+        {NAV_LINKS.map(link => {
+  if (link === 'CV') return null; // 👈 skip CV
 
-                if (isCV) {
-                  return (
-                    <a 
-                      key={link}
-                      href={CV_URL}
-                      download="CV - Muhammad Soban Zamir.pdf"
-                      className="block w-full text-left text-2xl font-bold text-white flex items-center gap-2 active:text-gray-400 transition-colors"
-                    >
-                      <FileText className="w-6 h-6" /> {link}
-                    </a>
-                  );
-                }
+  const isActive = activeSection === link;
+
+  return (
+    <button 
+      key={link}
+      onClick={() => scrollTo(link.toLowerCase())}
+      className={`block w-full text-left text-xl font-medium transition-all duration-300 flex items-center gap-3
+        ${isActive ? 'text-white translate-x-2' : 'text-gray-500'} 
+        active:text-white active:translate-x-4`}
+    >
+      {isActive && (
+        <motion.div 
+          layoutId="activeDotMobile" 
+          className="w-1.5 h-1.5 bg-white rounded-full"
+        />
+      )}
+      {link}
+    </button>
+  );
+})}
 
                 return (
                   <button 
