@@ -362,129 +362,115 @@ return (
 
 
 
+<nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+  <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    
+    {/* Left Side: Name and Mobile-Only CV */}
+    <div className="flex items-center gap-3">
+      <div className="text-xl font-bold tracking-tighter text-white">
+        <span>Muhammad Soban Zamir</span>
+      </div>
 
-{/* Branding & Mobile CV */}
-          <div className="flex items-center gap-3">
-            <div className="text-xl font-bold tracking-tighter text-white">
-              <span>Muhammad Soban Zamir</span>
-            </div>
-
-            {/* Mobile-only CV button: Hidden on laptop (md:hidden) */}
-            <a 
-              href={CV_URL}
-              download="CV - Muhammad Soban Zamir.pdf"
-              className="flex md:hidden items-center gap-1 text-[10px] font-bold text-yellow-400 border border-yellow-400/30 px-2 py-0.5 rounded-md active:bg-yellow-400/20 transition-all"
-            >
-              <FileText className="w-3 h-3" /> CV
-            </a>
-          </div>
-          
-          {/* Desktop Links - NO CHANGES MADE HERE */}
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map(link => {
-              if (link === 'CV') {
-                return (
-                  <a 
-                    key={link}
-                    href={CV_URL}
-                    download="CV - Muhammad Soban Zamir.pdf"
-                    className="text-sm font-bold text-yellow-400 hover:text-yellow-400 transition-colors flex items-center gap-1"
-                  >
-                    <FileText className="w-4 h-4" /> {link}
-                  </a>
-                );
-              }
-              return (
-                <button 
-                  key={link}
-                  onClick={() => scrollTo(link.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-white ${activeSection === link ? 'text-white' : 'text-gray-400' }`}
-                >
-                  {link}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex items-center gap-4">
-            {/* Desktop Socials - NO CHANGES MADE HERE */}
-            <div className="hidden sm:flex items-center gap-4 mr-2">
-              <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#0A66C2] transition-colors duration-300" title="LinkedIn">
-                <Linkedin className="w-5 h-5" />
+      {/* Mobile CV Button - Hidden on laptop */}
+      <a 
+        href={CV_URL}
+        download="CV - Muhammad Soban Zamir.pdf"
+        className="flex md:hidden items-center gap-1 text-[10px] font-bold text-yellow-400 border border-yellow-400/30 px-2 py-0.5 rounded-md active:bg-yellow-400/20 transition-all"
+      >
+        <FileText className="w-3 h-3" /> CV
+      </a>
+    </div>
+    
+    {/* Right Side: Desktop Links & Mobile Menu Toggle */}
+    <div className="flex items-center gap-8">
+      {/* Desktop Links - Hidden on mobile */}
+      <div className="hidden md:flex items-center gap-8">
+        {NAV_LINKS.map(link => {
+          if (link === 'CV') {
+            return (
+              <a 
+                key={link}
+                href={CV_URL}
+                download="CV - Muhammad Soban Zamir.pdf"
+                className="text-sm font-bold text-yellow-400 hover:text-yellow-400 transition-colors flex items-center gap-1"
+              >
+                <FileText className="w-4 h-4" /> {link}
               </a>
-              <a href="https://github.com/soban-zamir" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#ff0000] transition-colors duration-300" title="GitHub">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="mailto:sobanzamirm@gmail.com" className="text-white hover:text-[#00ff00] transition-colors duration-300" title="Email">
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
+            );
+          }
+          return (
             <button 
-              className="md:hidden text-white active:bg-white/10 p-2 rounded-lg transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              key={link}
+              onClick={() => scrollTo(link.toLowerCase())}
+              className={`text-sm font-medium transition-colors hover:text-white ${activeSection === link ? 'text-white' : 'text-gray-400' }`}
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {link}
             </button>
-          </div>
-        </div>
+          );
+        })}
+      </div>
 
-        {/* Mobile Dropdown Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
+      {/* Socials (Desktop Only) */}
+      <div className="hidden sm:flex items-center gap-4 mr-2">
+        <a href="https://www.linkedin.com/in/sobanzamir/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#0A66C2] transition-colors duration-300">
+          <Linkedin className="w-5 h-5" />
+        </a>
+        <a href="https://github.com/soban-zamir" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#ff0000] transition-colors duration-300">
+          <Github className="w-5 h-5" />
+        </a>
+        <a href="mailto:sobanzamirm@gmail.com" className="text-white hover:text-[#00ff00] transition-colors duration-300">
+          <Mail className="w-5 h-5" />
+        </a>
+      </div>
+
+      {/* Mobile Burger Menu Button */}
+      <button 
+        className="md:hidden text-white active:bg-white/10 p-2 rounded-lg transition-colors"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Dropdown Menu */}
+  <AnimatePresence>
+    {isMenuOpen && (
+      <motion.div 
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8 space-y-6 overflow-hidden"
+      >
+        {NAV_LINKS.filter(link => link !== 'CV').map(link => {
+          const isActive = activeSection === link;
+          return (
+            <button 
+              key={link}
+              onClick={() => {
+                scrollTo(link.toLowerCase());
+                setIsMenuOpen(false);
+              }}
+              className={`block w-full text-left text-xl font-medium transition-all duration-300 flex items-center gap-3
+                ${isActive ? 'text-white translate-x-2' : 'text-gray-500'} 
+                active:text-white active:translate-x-4`}
             >
-              {NAV_LINKS.map(link => {
-                const isCV = link === 'CV';
-                const isActive = activeSection === link;
+              {isActive && <div className="w-1.5 h-1.5 bg-white rounded-full" />}
+              {link}
+            </button>
+          );
+        })}
 
-                if (isCV) {
-                  return (
-                    <a 
-                      key={link}
-                      href={CV_URL}
-                      download="CV - Muhammad Soban Zamir.pdf"
-                      className="block w-full text-left text-2xl font-bold text-white flex items-center gap-2 active:text-gray-400 transition-colors"
-                    >
-                      <FileText className="w-6 h-6" /> {link}
-                    </a>
-                  );
-                }
-
-                return (
-                  <button 
-                    key={link}
-                    onClick={() => scrollTo(link.toLowerCase())}
-                    className={`block w-full text-left text-xl font-medium transition-all duration-300 flex items-center gap-3
-                      ${isActive ? 'text-white translate-x-2' : 'text-gray-500'} 
-                      active:text-white active:translate-x-4`}
-                  >
-                    {isActive && (
-                      <motion.div 
-                        layoutId="activeDotMobile" 
-                        className="w-1.5 h-1.5 bg-white rounded-full"
-                      />
-                    )}
-                    {link}
-                  </button>
-                );
-              })}
-
-              <div className="flex items-center gap-8 pt-6 border-t border-white/5">
-                <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-110 transition-transform"><Linkedin className="w-6 h-6" /></a>
-                <a href="https://github.com/soban-zamir" className="text-white active:scale-110 transition-transform"><Github className="w-6 h-6" /></a>
-                <a href="mailto:sobanzamirm@gmail.com" className="text-white active:scale-110 transition-transform"><Mail className="w-6 h-6" /></a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-      
+        {/* Mobile Socials */}
+        <div className="flex items-center gap-8 pt-6 border-t border-white/5">
+          <a href="https://www.linkedin.com/in/sobanzamir/" className="text-white active:scale-110 transition-transform"><Linkedin className="w-6 h-6" /></a>
+          <a href="https://github.com/soban-zamir" className="text-white active:scale-110 transition-transform"><Github className="w-6 h-6" /></a>
+          <a href="mailto:sobanzamirm@gmail.com" className="text-white active:scale-110 transition-transform"><Mail className="w-6 h-6" /></a>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</nav>
 
 
           
