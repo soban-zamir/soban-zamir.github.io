@@ -17,11 +17,11 @@ const NAV_LINKS = ['About', 'Experience', 'Projects', 'Certifications', 'Contact
 const CV_URL = "https://raw.githubusercontent.com/soban-zamir/soban-zamir/main/CV%20-%20Muhammad%20Soban%20Zamir.pdf";
 
 const FUN_FACTS = [
+  "Bananas are berries, but strawberries are not.",
+  "Lobsters taste with their feet.",
   "Octopuses have three hearts, nine brains, and blue blood.",
   "Honey never spoils.",
   "Scotland's national animal is the unicorn.",
-  "Bananas are berries, but strawberries are not.",
-  "Lobsters taste with their feet.",
   "A cloud can weigh over a million pounds.",
   "Sharks are older than trees.",
   "Venus is the only planet that rotates clockwise.",
@@ -31,25 +31,17 @@ const FUN_FACTS = [
 
 const EXPERIENCES = [
   {
-    company: "TUKL - NUST R&D Centre",
-    role: "Research Intern",
+    company: "NATIONAL CENTRE OF ARTIFICIAL INTELLIGENCE",
+    role: "Undergraduate Research Intern",
     period: "June 2025 - Aug 2025",
     achievements: [
-      "Selected through a competitive programming test and a detailed interview for an internship at TUKL Research Lab.",
-      "Trained and optimized deep learning models using Python and PyTorch, implementing custom CNNs (89% accuracy) and Transformer-based sequence models (93% accuracy).",
-      "Worked on a dental X-ray classification project as part of a research paper: improved text embeddings and developed a new model to enhance the representation of clinical text, resulting in a more effective active learning loop for labelling data and improving classification performance."
+      
+      "Selected through a competitive programming test and a detailed interview for an internship at the Technische Universitat Kaiserslautern - NUST R&D Centre AND Deep Learning Lab, National Centre of Artificial Intelligence (NCAI)",
+      "Worked on a dental X-ray classification project as part of a research paper: improved text embeddings and developed a new model to enhance the representation of clinical text, resulting in a more effective active learning loop for labeling data and improving classification performance",
+      "Trained and optimized deep learning models using Python and PyTorch, implementing custom CNNs (89% accuracy) and Transformer-based sequence models (93% accuracy)"
+      "Earned advanced certifications from Stanford, DeepLearning.AI, and IBM in Machine Learning Specialization, Deep Learning Specialization, and Basics of Large Language Models (LLMs), achieving top scores of 90+"
     ]
   },
-  {
-    company: "Connect Logistics",
-    role: "Industrial Automation Intern",
-    period: "Jan 2025 – Feb 2025",
-    achievements: [
-      "Worked with Human Machine Interface (HMI), Supervisory Control and Data Acquisition (SCADA), and Programmable Logic Controllers (PLCs) for monitoring and control of warehouse systems.",
-      "Assisted engineers in monitoring and configuring PLC/SCADA-controlled warehouse subsystems for temperature-regulated pharmaceutical storage.",
-      "Analysed cold-chain cooling systems maintaining 2°C–8°C storage for pharmaceutical products, gaining exposure to industrial temperature control and reliability (e.g., GSK), while also observing ambient storage operations for FMCG clients such as Unilever."
-    ]
-  }
 ];
 
 const PROJECTS = [
@@ -177,7 +169,7 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
   </div>
 );
 
-const TITLES = ["Electrical Engineer", "Researcher", "Deep Learning Practitioner"];
+const TITLES = ["Electrical Engineer", "Researcher"];
 
 
 const MovingGrid = () => {
@@ -563,7 +555,7 @@ return (
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Overview</h2>
             <p className="text-xl text-gray-400 max-w-4xl leading-relaxed">
-              I'm designing embedded systems, training deep learning models and building industrial automation solutions. I believe the future belongs to those who can bridge the gap between physical circuits and intelligent algorithms.
+              RF & Antenna Engineering enthusiast. Deep learning builder. I believe the future belongs to those who can bridge the gap between physical circuits and intelligent algorithms.
             </p>
           </motion.div>
         </section>
