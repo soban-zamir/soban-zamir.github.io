@@ -38,7 +38,7 @@ const EXPERIENCES = [
       
       "Selected through a competitive programming test and a detailed interview for an internship at the Technische Universitat Kaiserslautern - NUST R&D Centre AND Deep Learning Lab, National Centre of Artificial Intelligence (NCAI)",
       "Worked on a dental X-ray classification project as part of a research paper: improved text embeddings and developed a new model to enhance the representation of clinical text, resulting in a more effective active learning loop for labeling data and improving classification performance",
-      "Trained and optimized deep learning models using Python and PyTorch, implementing custom CNNs (89% accuracy) and Transformer-based sequence models (93% accuracy)"
+      "Trained and optimized deep learning models using Python and PyTorch, implementing custom CNNs (89% accuracy) and Transformer-based sequence models (93% accuracy)",
       "Earned advanced certifications from Stanford, DeepLearning.AI, and IBM in Machine Learning Specialization, Deep Learning Specialization, and Basics of Large Language Models (LLMs), achieving top scores of 90+"
     ]
   },
